@@ -8,7 +8,7 @@ export default function ToggleTheme() {
 
   return (
     <ActionIcon
-      className="bg-main-5 text-white hover:bg-main-7"
+      className="bg-main-5 text-white hover:bg-main-7 w-8 h-8"
       onClick={() => toggleColorScheme()}
       title="Toggle color scheme"
     >

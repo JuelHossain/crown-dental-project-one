@@ -1,5 +1,4 @@
-import { Burger, createStyles, Flex, Group, Header } from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
+import { createStyles, Flex, Group, Header } from "@mantine/core";
 import ToggleTheme from "../shared/ToggleTheme";
 import Links from "./links/Links";
 import MobileLinks from "./links/MobileLinks";
@@ -30,13 +29,12 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function AppHeader() {
-
   const { classes, cx } = useStyles();
 
   return (
     <Header className="bg-transparent pt-4 fixed top-0 border-none">
       <Flex align="center" className={classes.inner}>
-        <MobileLinks/>
+        <MobileLinks />
         <Links />
         <Logo />
 

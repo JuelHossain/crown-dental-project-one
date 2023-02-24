@@ -5,7 +5,7 @@ import { FaUser } from "react-icons/fa";
 export default function UserIcon() {
   return (
     <ActionIcon
-      className="bg-sec-5 text-white hover:bg-sec-7"
+      className="bg-sec-5 text-white hover:bg-sec-7 w-8 h-8"
       //   onClick={() => toggleColorScheme()}
       title="Toggle color scheme"
     >

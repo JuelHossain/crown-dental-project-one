@@ -1,9 +1,16 @@
+import { Group } from "@mantine/core";
+import LoginButton from "./LoginButton";
+import LogoutButton from "./LogoutButton";
 import UserIcon from "./UserIcon";
 
 export default function User() {
-  return (
-    <div>
+  const user = false;
+  return user ? (
+    <Group spacing={6} noWrap>
       <UserIcon />
-    </div>
+      <LogoutButton />
+    </Group>
+  ) : (
+    <LoginButton />
   );
 }

@@ -1,11 +1,8 @@
-import { Button, Flex, Title } from "@mantine/core";
+import { Button, Center, Title } from "@mantine/core";
 
-export default function Content({ text, buttonText, onButtonClick, position }) {
+export default function Content({ text, buttonText, onButtonClick }) {
   return (
-    <Flex
-      direction="column"
-      className={`bg-gradient-to-r from-main-5/10 via-sec-5/20 to-main-5/10 p-10 gap-2 absolute  rounded-xl ${position}`}
-    >
+    <Center className="flex flex-col text-center z-10 gap-2">
       <Title className=" max-w-xs sm:max-w-xl font-main text-4xl sm:text-6xl text-main-2/90 ">{text}</Title>
       <div>
         <Button
@@ -16,6 +13,6 @@ export default function Content({ text, buttonText, onButtonClick, position }) {
           {buttonText}
         </Button>
       </div>
-    </Flex>
+    </Center>
   );
 }

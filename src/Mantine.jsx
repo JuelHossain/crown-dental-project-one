@@ -10,6 +10,7 @@ function Mantine() {
     primaryColor: "main",
     colors: mode === "dark" ? darkColors : lightColors,
     fontFamily: "El Messiri, sans-serif",
+    primaryShade: 5,
   };
   const theme = useTheme(customTheme);
 
