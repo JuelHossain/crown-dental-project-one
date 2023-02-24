@@ -13,6 +13,7 @@ export function AuthFormProvider({ children }) {
       email: "",
       password: "",
       name: "",
+      passwordReset: "",
     },
     validate: {
       email: activeInput === "email" && isEmail("InValid Email"),

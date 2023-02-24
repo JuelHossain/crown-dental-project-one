@@ -1,3 +1,4 @@
+/* eslint-disable no-plusplus */
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -5,8 +6,9 @@ const initialState = {
   user: {},
   inputs: ["email", "name", "password"],
   activeInput: "email",
-  emailStatus: "",
+  emailStatus: "dk",
   form: {},
+  timer: 30,
 };
 
 const authSlice = createSlice({
@@ -31,8 +33,20 @@ const authSlice = createSlice({
     setForm: (state, action) => {
       state.form.assign(action.payload);
     },
+    controlTimer: (state, action) => {
+      if (action.payload === "on") {
+        for (let i = state.timer; i >= 0; i--) {
+          state.timer = i;
+        }
+        if (state.timer === 0) {
+          state.timer = 30;
+        }
+      } else {
+        state.timer = 30;
+      }
+    },
   },
 });
 
-export const { userLoggedIn, userLoggedOut, setActiveInput, setEmailStatus, setForm } = authSlice.actions;
+export const { userLoggedIn, userLoggedOut, setActiveInput, setEmailStatus, setForm, controlTimer } = authSlice.actions;
 export default authSlice.reducer;
