@@ -6,6 +6,7 @@ const tailColors = getTailColors(colors);
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: "class",
+
   theme: {
     screens: {
       xxs: "400px",
@@ -18,6 +19,12 @@ module.exports = {
     },
     extend: {
       colors: tailColors,
+      fontFamily: {
+        main: '"El Messiri"',
+      },
     },
+  },
+  corePlugins: {
+    preflight: false,
   },
 };

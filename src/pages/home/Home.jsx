@@ -1,10 +1,9 @@
-import { Center } from "@mantine/core";
-import ChangeTheme from "../../components/shared/ChangeTheme";
+import Banner from "../../components/header/banner/Banner";
 
 export default function Home() {
   return (
-    <Center className="h-full">
-      <ChangeTheme />
-    </Center>
+    <div>
+      <Banner />
+    </div>
   );
 }

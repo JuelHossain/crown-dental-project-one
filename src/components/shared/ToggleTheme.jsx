@@ -1,7 +1,8 @@
+/* eslint-disable import/no-extraneous-dependencies */
 import { ActionIcon, useMantineColorScheme } from "@mantine/core";
-import { IconMoonStars, IconSun } from "@tabler/icons";
+import { FaMoon, FaSun } from "react-icons/fa";
 
-export default function ChangeTheme() {
+export default function ToggleTheme() {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const dark = colorScheme === "dark";
 
@@ -11,7 +12,7 @@ export default function ChangeTheme() {
       onClick={() => toggleColorScheme()}
       title="Toggle color scheme"
     >
-      {dark ? <IconSun size={18} /> : <IconMoonStars size={18} />}
+      {dark ? <FaSun size={18} /> : <FaMoon size={18} />}
     </ActionIcon>
   );
 }

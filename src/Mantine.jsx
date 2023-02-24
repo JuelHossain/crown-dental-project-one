@@ -1,6 +1,7 @@
 import { useTheme, useThemeMode } from "@juel/hooks/theme";
 import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
-import App from "./App";
+import { RouterProvider } from "react-router-dom";
+import router from "./router";
 import { darkColors, lightColors } from "./utils/colors";
 
 function Mantine() {
@@ -8,13 +9,14 @@ function Mantine() {
   const customTheme = {
     primaryColor: "main",
     colors: mode === "dark" ? darkColors : lightColors,
+    fontFamily: "El Messiri, sans-serif",
   };
   const theme = useTheme(customTheme);
 
   return (
     <ColorSchemeProvider colorScheme={mode} toggleColorScheme={toggleMode}>
       <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
-        <App />
+        <RouterProvider router={router} />
       </MantineProvider>
     </ColorSchemeProvider>
   );
