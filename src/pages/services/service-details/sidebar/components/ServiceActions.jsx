@@ -1,21 +1,19 @@
 import { Button, Group } from "@mantine/core";
-import { IconPencil } from "@tabler/icons";
+import { FaPencilAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import UpdateServiceModal from "../../../../../components/modify-services/UpdateServiceModal";
+import openServiceModal from "../../../../../components/modals/updateServiceModal";
 import { selectUser } from "../../../../../features/auth/authSelector";
 import DeleteService from "./DeleteService";
 
 export default function ServiceActions() {
   const user = useSelector(selectUser);
-
   return (
     user && (
       <Group className="w-full">
-        <Button className="flex-1" onClick={open} leftIcon={<IconPencil size={18} />}>
+        <Button className="flex-1" onClick={openServiceModal} leftIcon={<FaPencilAlt size={18} />}>
           Edit
         </Button>
         <DeleteService />
-        <UpdateServiceModal />
       </Group>
     )
   );

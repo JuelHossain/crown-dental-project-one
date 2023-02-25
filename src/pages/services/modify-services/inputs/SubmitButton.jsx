@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 import { Button, Group } from "@mantine/core";
-import { useServiceFormContext } from "../../../context/service-form-context/serviceFormContext";
+import { useServiceFormContext } from "../../context/serviceFormContext";
 
 export default function SubmitButton() {
   const { loading, uploading } = useServiceFormContext();

@@ -1,6 +1,7 @@
 import { NumberInput } from "@mantine/core";
-import { IconMedal } from "@tabler/icons";
-import { useServiceFormContext } from "../../../context/service-form-context/serviceFormContext";
+import { FaMedal } from "react-icons/fa";
+
+import { useServiceFormContext } from "../../context/serviceFormContext";
 
 export default function Price() {
   const { getInputProps } = useServiceFormContext();
@@ -11,7 +12,7 @@ export default function Price() {
       label="Service Cost"
       placeholder="Service Cost"
       {...getInputProps("cost")}
-      icon={<IconMedal size={18} />}
+      icon={<FaMedal size={18} />}
     />
   );
 }

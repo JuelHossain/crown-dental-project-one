@@ -1,11 +1,13 @@
 import { LoadingOverlay, Stack, Title } from "@mantine/core";
-import { useServiceContext } from "../../../../context/serviceContext";
+import { useGetServiceQuery } from "../../../../features/services/servicesApi";
+import useServiceId from "../../../../hooks/services/useServiceId";
 import Description from "./Description";
 
 export default function Details() {
-  const { data, isLoading } = useServiceContext();
-  const { name, description } = data ?? {};
-
+  const serviceId = useServiceId();
+  console.log(serviceId);
+  const { data: { name, description } = {}, isLoading } = useGetServiceQuery(serviceId) || {};
+  console.log(name);
   return (
     <Stack className="md:basis-2/3 sm:basis-1/2">
       <Title>{name}</Title>

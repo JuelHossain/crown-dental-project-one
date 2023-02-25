@@ -1,16 +1,16 @@
 /* eslint-disable no-underscore-dangle */
 import { Stack, Text, Title } from "@mantine/core";
 import { Link } from "react-router-dom";
-import { useServiceContext } from "../../../../../context/serviceContext";
-import useGetServices from "../../../../../hooks/services/useGetServices";
+import { useGetServicesQuery } from "../../../../../features/services/servicesApi";
+import useServiceId from "../../../../../hooks/services/useServiceId";
 
 export default function OtherService() {
-  const { id } = useServiceContext();
-  const { data: servicesData } = useGetServices(0, 6);
+  const serviceId = useServiceId();
+  const { data: servicesData } = useGetServicesQuery({ page: 0, size: 6 });
   const services = servicesData?.map((s) => {
     const { name, _id } = s;
     return (
-      s._id === id || (
+      s._id === serviceId || (
         <Text
           className="uppercase  bg-main-5/10 px-4 py-2 rounded underline-offset-4"
           component={Link}

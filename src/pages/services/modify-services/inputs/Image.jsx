@@ -1,6 +1,7 @@
 import { FileInput } from "@mantine/core";
-import { IconUpload } from "@tabler/icons";
-import { useServiceFormContext } from "../../../context/service-form-context/serviceFormContext";
+import { FaUpload } from "react-icons/fa";
+
+import { useServiceFormContext } from "../../context/serviceFormContext";
 
 export default function Image() {
   const { setValues, uploadImage, errors } = useServiceFormContext();
@@ -19,7 +20,7 @@ export default function Image() {
       label="Image"
       placeholder="only jpg and png"
       onChange={uploadHandler}
-      icon={<IconUpload size={14} />}
+      icon={<FaUpload size={14} />}
       accept="image/png,image/jpeg"
       clearable
       error={errors.imageLink}

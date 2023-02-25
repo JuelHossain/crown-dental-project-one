@@ -1,5 +1,5 @@
 import { Textarea } from "@mantine/core";
-import { useServiceFormContext } from "../../../context/service-form-context/serviceFormContext";
+import { useServiceFormContext } from "../../context/serviceFormContext";
 
 export default function ShortDescription() {
   const { getInputProps } = useServiceFormContext();

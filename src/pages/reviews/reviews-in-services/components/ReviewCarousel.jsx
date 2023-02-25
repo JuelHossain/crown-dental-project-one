@@ -2,7 +2,9 @@
 import { Carousel } from "@mantine/carousel";
 import { useMantineTheme } from "@mantine/core";
 import { useMediaQuery } from "@mantine/hooks";
-import { useServiceContext } from "../../../../../context/serviceContext";
+import { useSelector } from "react-redux";
+import { useGetReviewsQuery } from "../../../../features/reviews/reviewsApi";
+import { selectServiceId } from "../../../../features/services/servicesSelector";
 import ReviewCard from "../review-card/ReviewCard";
 import NoReviews from "./NoReviews";
 
@@ -10,9 +12,10 @@ export default function ReviewCarousel() {
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm}px)`);
 
-  const { reviews: { data } = {} } = useServiceContext();
+  const serviceId = useSelector(selectServiceId);
+  const { data: reviews } = useGetReviewsQuery(serviceId);
 
-  const slides = data?.map((item) => (
+  const slides = reviews?.map((item) => (
     <Carousel.Slide className="h-full" key={item._id}>
       <ReviewCard {...item} />
     </Carousel.Slide>
@@ -27,7 +30,7 @@ export default function ReviewCarousel() {
       slidesToScroll={mobile ? 1 : 2}
       height={166}
     >
-      {data?.length === 0 ? <NoReviews /> : slides}
+      {reviews?.length === 0 ? <NoReviews /> : slides}
     </Carousel>
   );
 }

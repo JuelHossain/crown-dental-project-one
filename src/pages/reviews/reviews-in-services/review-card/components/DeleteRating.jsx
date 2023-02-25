@@ -1,10 +1,11 @@
 import { ActionIcon, Text } from "@mantine/core";
 import { openConfirmModal } from "@mantine/modals";
-import { IconTrash } from "@tabler/icons";
-import useDeleteReview from "../../../../../../hooks/reviews/useDeleteReview";
+import { FaTrash } from "react-icons/fa";
+
+import { useDeleteReviewMutation } from "../../../../../features/reviews/reviewsApi";
 
 export default function DeleteRating({ id, name }) {
-  const { mutate } = useDeleteReview();
+  const [deleteReview] = useDeleteReviewMutation();
   const openDeleteModal = () =>
     openConfirmModal({
       title: `Delete Rating for ${name}`,
@@ -17,12 +18,12 @@ export default function DeleteRating({ id, name }) {
       labels: { confirm: "Delete Rating", cancel: "No don't delete it" },
       confirmProps: { color: "red" },
       onConfirm: () => {
-        mutate(id);
+        deleteReview(id);
       },
     });
   return (
     <ActionIcon onClick={openDeleteModal} variant="light" color="red">
-      <IconTrash size={18} />
+      <FaTrash size={18} />
     </ActionIcon>
   );
 }

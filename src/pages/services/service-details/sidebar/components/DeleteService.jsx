@@ -1,13 +1,13 @@
 import { Button, Text } from "@mantine/core";
 import { openConfirmModal } from "@mantine/modals";
-import { IconTrash } from "@tabler/icons";
+import { FaTrash } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { useServiceContext } from "../../../../../context/serviceContext";
-import useDeleteService from "../../../../../hooks/services/useDeleteService";
+import { useDeleteServiceMutation } from "../../../../../features/services/servicesApi";
+import useServiceId from "../../../../../hooks/services/useServiceId";
 
 export default function DeleteService() {
-  const { id } = useServiceContext();
-  const { mutate } = useDeleteService();
+  const serviceId = useServiceId();
+  const [deleteService] = useDeleteServiceMutation();
   const navigate = useNavigate();
   const openDeleteModal = () =>
     openConfirmModal({
@@ -21,17 +21,14 @@ export default function DeleteService() {
       labels: { confirm: "Delete Service", cancel: "No don't delete it" },
       confirmProps: { color: "red" },
 
-      onConfirm: () => {
-        mutate(id, {
-          onSuccess: () => {
-            navigate("/services");
-          },
-        });
+      onConfirm: async () => {
+        await deleteService(serviceId);
+        navigate("/services");
       },
     });
 
   return (
-    <Button className="flex-1" onClick={openDeleteModal} leftIcon={<IconTrash size={18} />}>
+    <Button className="flex-1" onClick={openDeleteModal} leftIcon={<FaTrash size={18} />}>
       Delete
     </Button>
   );

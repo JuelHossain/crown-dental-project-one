@@ -5,8 +5,8 @@ import { useParams } from "react-router-dom";
 import { setServiceId } from "../../../features/services/servicesSlice";
 import useSetPageTitle from "../../../hooks/shared/useSetPageTitle";
 
-import Details from "./details/Details";
 import Reviews from "../../reviews/reviews-in-services/Reviews";
+import Details from "./details/Details";
 import Sidebar from "./sidebar/Sidebar";
 
 export default function ServiceDetails() {
@@ -16,7 +16,7 @@ export default function ServiceDetails() {
 
   // setting service id to the store;
   useEffect(() => {
-    dispatch(setServiceId);
+    dispatch(setServiceId(id));
   }, [id, dispatch]);
 
   return (

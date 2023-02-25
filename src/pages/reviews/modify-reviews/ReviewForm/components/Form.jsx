@@ -2,14 +2,11 @@ import { LoadingOverlay, Stack } from "@mantine/core";
 import { useReviewFormContext } from "../../../context/reviewFormContext";
 
 export default function Form({ children }) {
-  const {
-    submitHandler,
-    data: { isLoading },
-  } = useReviewFormContext();
+  const { submitHandler, loading } = useReviewFormContext();
   return (
     <Stack component="form" onSubmit={submitHandler} className="relative  ">
       {children}
-      <LoadingOverlay visible={isLoading} />
+      <LoadingOverlay visible={loading} />
     </Stack>
   );
 }

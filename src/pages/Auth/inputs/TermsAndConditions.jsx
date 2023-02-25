@@ -1,5 +1,5 @@
 import { Button, Checkbox, Group } from "@mantine/core";
-import { openTermsModal } from "../../../components/modals/TermsModal";
+import openTermsModal from "../../../components/modals/TermsModal";
 import { useAuthFormContext } from "../context/authFormContext";
 
 export default function TermsAndConditions() {

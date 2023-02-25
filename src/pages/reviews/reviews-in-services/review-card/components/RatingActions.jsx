@@ -1,14 +1,14 @@
 import { Badge, Group, Stack } from "@mantine/core";
-import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useMatch } from "react-router-dom";
-import auth from "../../../../../../firebase";
-import useGetService from "../../../../../../hooks/services/useGetService";
+import { useGetServicesQuery } from "../../../../../features/services/servicesApi";
+import useAuth from "../../../../../hooks/auth/useAuth";
+
 import DeleteRating from "./DeleteRating";
 import UpdateRating from "./UpdateRating";
 
 export default function RatingActions({ serviceId, _id }) {
-  const { data: { name } = {} } = useGetService(serviceId);
-  const [user] = useAuthState(auth);
+  const { data: { name } = {} } = useGetServicesQuery(serviceId);
+  const user = useAuth();
   const inMyReviews = useMatch("/my-reviews");
   return (
     user &&

@@ -1,6 +1,6 @@
 import { Text } from "@mantine/core";
 import RichTextEditor from "@mantine/rte";
-import { useServiceFormContext } from "../../../context/service-form-context/serviceFormContext";
+import { useServiceFormContext } from "../../context/serviceFormContext";
 
 export default function Description() {
   const { getInputProps, errors, uploadImage } = useServiceFormContext();

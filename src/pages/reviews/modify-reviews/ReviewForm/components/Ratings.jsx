@@ -1,5 +1,5 @@
 import { Group, Rating } from "@mantine/core";
-import { useReviewFormContext } from "../../../../context/review-form-context/reviewFormContext";
+import { useReviewFormContext } from "../../../context/reviewFormContext";
 
 export default function Ratings() {
   const { getInputProps, errors } = useReviewFormContext() ?? {};

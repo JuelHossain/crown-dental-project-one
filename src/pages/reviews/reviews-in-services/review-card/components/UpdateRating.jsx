@@ -1,8 +1,9 @@
 import { ActionIcon, Title } from "@mantine/core";
 import { openModal } from "@mantine/modals";
-import { IconPencil } from "@tabler/icons";
-import ReviewForm from "../../../../../../components/modify-reviews/ReviewForm/ReviewForm";
-import { ReviewFormProvider } from "../../../../../../context/review-form-context/reviewFormContext";
+import { FaPencilAlt } from "react-icons/fa";
+
+import { ReviewFormProvider } from "../../../context/reviewFormContext";
+import ReviewForm from "../../../modify-reviews/ReviewForm/ReviewForm";
 
 export default function UpdateRating({ id, name }) {
   const openDeleteModal = () =>
@@ -18,7 +19,7 @@ export default function UpdateRating({ id, name }) {
     });
   return (
     <ActionIcon onClick={openDeleteModal} variant="light" color="red">
-      <IconPencil size={18} />
+      <FaPencilAlt size={18} />
     </ActionIcon>
   );
 }
