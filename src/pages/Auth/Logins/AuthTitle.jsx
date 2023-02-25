@@ -1,10 +1,10 @@
-import { useSelector } from "react-redux";
 import Arch from "../../../components/icons/Arch";
-import { selectEmailStatus } from "../../../features/auth/authSelector";
+import { useAuthFormContext } from "../context/authFormContext";
 
 export default function AuthTitle() {
-  const emailStatus = useSelector(selectEmailStatus);
+  const { emailStatus } = useAuthFormContext();
   const title = emailStatus ? "Please Login" : "Please Register";
+
   const text = emailStatus
     ? "Please answer the question to login"
     : "oops, Looks like you are not an user, please register";

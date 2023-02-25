@@ -11,7 +11,6 @@ export default function LoginWithEmail() {
     <Stack onSubmit={submitHandler} component="form" className="gap-2">
       <CommonLabel />
       <CommonInput />
-
       <SubmitButton />
       <Loading visible={loading} />
     </Stack>

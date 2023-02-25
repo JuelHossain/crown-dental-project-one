@@ -1,14 +1,13 @@
 import { Button, Group } from "@mantine/core";
-import { useSelector } from "react-redux";
-import { selectActiveInput } from "../../../features/auth/authSelector";
+import { useAuthFormContext } from "../context/authFormContext";
 
 export default function SubmitButton() {
-  const activeInput = useSelector(selectActiveInput);
+  const { activeInput } = useAuthFormContext();
   return (
     activeInput !== "passwordResetEmailSent" && (
       <Group className="justify-center">
         <Button type="submit" className="h-8 pt-1 w-40">
-          Submit
+          {activeInput === "verificationEmailSent" ? "Login" : "Submit"}
         </Button>
       </Group>
     )

@@ -1,12 +1,10 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-plusplus */
 /* eslint-disable no-nested-ternary */
-import { useSelector } from "react-redux";
-import { selectActiveInput, selectEmailStatus } from "../../../features/auth/authSelector";
+import { useAuthFormContext } from "../context/authFormContext";
 
 export default function CommonLabel() {
-  const activeInput = useSelector(selectActiveInput);
-  const emailStatus = useSelector(selectEmailStatus);
+  const { activeInput, emailStatus } = useAuthFormContext();
   const title =
     activeInput === "name"
       ? "What is your name?"
@@ -18,6 +16,10 @@ export default function CommonLabel() {
       ? "Reset Your Password Now"
       : activeInput === "passwordResetEmailSent"
       ? "Reset Email Sent Successfully"
+      : activeInput === "terms"
+      ? "Please Accept Terms & Conditions"
+      : activeInput === "verificationEmailSent"
+      ? "Please Verify Your Email"
       : "What is your Email Address?";
 
   return (
