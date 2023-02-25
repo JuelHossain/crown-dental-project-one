@@ -1,14 +1,14 @@
 /* eslint-disable no-plusplus */
 import { Alert, Button } from "@mantine/core";
+import { sendEmailVerification } from "firebase/auth";
 import { TiTick } from "react-icons/ti";
+import { auth } from "../../../firebase";
 import useTimer from "../../../hooks/useTimer";
 import { useAuthFormContext } from "../context/authFormContext";
-import useLogin from "../context/hooks/useLogin";
 
 export default function VerificationEmailSent() {
-  const login = useLogin();
   const timer = useTimer(29, { reset: true });
-  const { errors } = useAuthFormContext();
+  const { errors, setFieldError } = useAuthFormContext();
   return (
     <Alert className="max-w-sm relative" icon={<TiTick size={16} />} title="Verification Email Sent">
       A email verification link Has Been Sent to Your email . please click on the link to verify your email and click on
@@ -22,7 +22,11 @@ export default function VerificationEmailSent() {
         size="xs"
         variant="white"
         onClick={async () => {
-          await login(true);
+          try {
+            await sendEmailVerification(auth.currentUser);
+          } catch (err) {
+            setFieldError("verified", err?.code || err?.message);
+          }
         }}
       >
         send Email Verification Again

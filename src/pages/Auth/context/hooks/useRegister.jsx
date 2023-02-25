@@ -1,24 +1,28 @@
 import { createUserWithEmailAndPassword, sendEmailVerification, updateProfile } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { useAuthFormContext } from "../authFormContext";
 /* eslint-disable import/no-extraneous-dependencies */
+import { useGenerateTokenMutation } from "../../../../features/auth/authApi";
 import { auth } from "../../../../firebase";
+import useRedirect from "../../../../hooks/useRedirect";
 
 export default function useRegister() {
   const { setFieldError, reset, setActiveInput, setEmailStatus, setLoading, values } = useAuthFormContext();
-  const navigate = useNavigate();
+  const redirect = useRedirect();
   const { email, password, name } = values;
+  const [generateToken] = useGenerateTokenMutation();
+
   return async () => {
     try {
       setLoading(true);
       await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser, { displayName: name });
       if (auth.currentUser.emailVerified) {
+        await generateToken(auth?.currentUser);
         setLoading(false);
         reset();
         setActiveInput("email");
         setEmailStatus(1);
-        navigate("/");
+        redirect();
       } else {
         await sendEmailVerification(auth.currentUser);
         setActiveInput("verificationEmailSent");

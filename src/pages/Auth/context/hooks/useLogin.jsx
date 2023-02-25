@@ -1,24 +1,29 @@
 import { sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { useGenerateTokenMutation } from "../../../../features/auth/authApi";
 import { auth } from "../../../../firebase";
+import useRedirect from "../../../../hooks/useRedirect";
 import { useAuthFormContext } from "../authFormContext";
 
 export default function useLogin() {
   const { setFieldError, reset, setActiveInput, setEmailStatus, setLoading, values } = useAuthFormContext();
   const { email, password } = values || {};
-  const navigate = useNavigate();
+  const redirect = useRedirect();
+
+  const [generateToken] = useGenerateTokenMutation();
+
   return async () => {
     try {
       setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
       if (auth.currentUser.emailVerified) {
+        await generateToken(auth?.currentUser);
         setLoading(false);
         reset();
         setActiveInput("email");
         setEmailStatus(1);
-        navigate("/");
+        redirect();
       } else {
-        await sendEmailVerification(auth.currentUser);
+        await sendEmailVerification(auth?.currentUser);
         setActiveInput("verificationEmailSent");
         setLoading(false);
         setEmailStatus(1);

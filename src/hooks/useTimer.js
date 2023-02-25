@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import useVerification from "../pages/Auth/context/hooks/useVerification";
 
-export default function useTimer(initial, { reset }) {
+export default function useTimer(initial, { reset } = {}) {
   const [timer, setTimer] = useState(initial || 30);
   const verification = useVerification();
 

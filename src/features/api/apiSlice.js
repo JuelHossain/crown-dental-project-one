@@ -1,14 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { url } from "../../utils/default";
+
 import { userLoggedOut } from "../auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: import.meta.env.API_URL,
+  baseUrl: url,
   prepareHeaders: async (headers, { getState }) => {
     const token = getState()?.auth?.accessToken;
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }
-    headers.set("mode", "no-cors");
     return headers;
   },
 });

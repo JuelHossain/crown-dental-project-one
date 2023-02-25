@@ -1,12 +1,12 @@
 import { Group } from "@mantine/core";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../../firebase";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../features/auth/authSelector";
 import LoginButton from "./LoginButton";
 import LogoutButton from "./LogoutButton";
 import UserIcon from "./UserIcon";
 
 export default function User() {
-  const [user] = useAuthState(auth);
+  const user = useSelector(selectUser);
   return user ? (
     <Group spacing={6} noWrap>
       <UserIcon />

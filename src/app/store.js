@@ -8,7 +8,8 @@ const store = configureStore({
     auth: authSliceReducer,
   },
   devTools: import.meta.env.DEV,
-  middleware: (getDefaultMiddlewares) => getDefaultMiddlewares().concat(apiSlice.middleware),
+  middleware: (getDefaultMiddlewares) =>
+    getDefaultMiddlewares({ serializableCheck: false }).concat(apiSlice.middleware),
 });
 
 export default store;

@@ -17,6 +17,7 @@ export function AuthFormProvider({ children }) {
       passwordReset: "",
       terms: false,
       verified: false,
+      social: false,
     },
     validate: {
       email: activeInput === "email" && isEmail("InValid Email"),

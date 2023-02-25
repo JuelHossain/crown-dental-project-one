@@ -1,28 +1,24 @@
 /* eslint-disable no-shadow */
-import { onAuthStateChanged } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { useNavigate } from "react-router-dom";
+import { useGenerateTokenMutation } from "../../../../features/auth/authApi";
 import { auth } from "../../../../firebase";
+import useRedirect from "../../../../hooks/useRedirect";
 import { useAuthFormContext } from "../authFormContext";
 
 export default function useVerification() {
   const [user] = useAuthState(auth);
-  const navigate = useNavigate();
-  const { setActiveInput, setFieldError, clearErrors } = useAuthFormContext();
+  const redirect = useRedirect();
+  const { setFieldError, clearErrors } = useAuthFormContext();
+  const [generateToken] = useGenerateTokenMutation();
 
   return async () => {
-    if (user.emailVerified) {
-      navigate("/");
+    await user.reload();
+    if (user?.emailVerified) {
+      await generateToken(user);
+      redirect();
     } else {
       setFieldError("verified", "not yet verified");
       setTimeout(clearErrors, 3000);
-      await onAuthStateChanged(auth, (user) => {
-        if (user) {
-          console.log(user.emailVerified);
-        } else {
-          setActiveInput("email");
-        }
-      });
     }
   };
 }

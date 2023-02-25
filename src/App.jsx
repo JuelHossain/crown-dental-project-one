@@ -2,12 +2,17 @@
 import { Outlet, useMatch } from "react-router-dom";
 import AppHeader from "./components/header/Header";
 import HeaderBack from "./components/header/HeaderBack";
+import Loading from "./components/shared/Loading";
+import useAuthCheck from "./hooks/useAuthCheck";
 
 export default function App() {
   const home = useMatch("/");
   const auth = useMatch("/authentication");
+  const authChecked = useAuthCheck();
 
-  return (
+  return !authChecked ? (
+    <Loading />
+  ) : (
     <div className="min-h-screen flex justify-between flex-col">
       <AppHeader />
       {!home || (auth && <HeaderBack />)}
