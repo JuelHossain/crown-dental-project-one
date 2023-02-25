@@ -9,7 +9,7 @@ export default function Auth() {
     <div className="relative">
       <Banner>
         <AuthFormProvider>
-          <Stack className="mb-40 items-center   ">
+          <Stack className="items-center   ">
             <AuthTitle />
             <AuthForm />
           </Stack>

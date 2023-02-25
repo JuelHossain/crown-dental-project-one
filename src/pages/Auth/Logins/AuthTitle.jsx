@@ -10,11 +10,11 @@ export default function AuthTitle() {
     : "oops, Looks like you are not an user, please register";
   return (
     <>
-      <div className="-mb-36 space-y-2 z-[200] text-center max-w-sm">
-        <h2 className=" text-sec-5 text-4xl">{title}</h2>
-        <p className="">{text}</p>
+      <div className="-mb-24 sm:-mb-36 sm:space-y-2 z-[200] text-center max-w-sm">
+        <h2 className=" text-sec-5  text-4xl">{title}</h2>
+        <p>{text}</p>
       </div>
-      <Arch svgClass="w-[600px] z-10 " />
+      <Arch svgClass="rotate-[16deg] sm:rotate-0 sm:w-[600px] z-10 " />
     </>
   );
 }

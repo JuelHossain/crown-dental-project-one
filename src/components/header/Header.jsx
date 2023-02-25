@@ -39,7 +39,9 @@ export default function AppHeader() {
         <Logo />
 
         <Group spacing={6} className={cx(classes.social, "flex-1")} position="right" noWrap>
-          <User />
+          <div className="hidden xs:block">
+            <User />
+          </div>
           <ToggleTheme />
         </Group>
       </Flex>

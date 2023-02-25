@@ -1,5 +1,9 @@
-import { Burger, createStyles, Menu } from "@mantine/core";
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+import { Burger, Button, createStyles, Drawer, Group, Stack } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { Link, useLocation } from "react-router-dom";
+import User from "../user/User";
 import navlinks from "./navlinks";
 
 const useStyles = createStyles((theme) => ({
@@ -13,16 +17,47 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export default function MobileLinks() {
-  const [opened, { toggle }] = useDisclosure(false);
+  const [opened, { toggle, close }] = useDisclosure(false);
   const { classes } = useStyles();
+  const { pathname } = useLocation();
+  const path = pathname.slice(1);
 
-  const items = navlinks.map((link) => <Menu.Item key={link}>{link.label}</Menu.Item>);
+  const items = navlinks.map(({ label, link }) => {
+    const match = pathname === link || (path.includes(link) && pathname !== "/");
+
+    return (
+      <Button
+        onClick={close}
+        color={match || "neu"}
+        variant={match ? "filled" : "light"}
+        component={Link}
+        key={label}
+        to={link}
+        className="h-8 pt-0.5"
+      >
+        {label}
+      </Button>
+    );
+  });
   return (
-    <Menu className="flex-1 sm:hidden">
-      <Menu.Target>
+    <Stack className="flex-1 sm:hidden">
+      <Group>
         <Burger opened={opened} onClick={toggle} size="sm" className={classes.burger} />
-      </Menu.Target>
-      <Menu.Dropdown>{items}</Menu.Dropdown>
-    </Menu>
+      </Group>
+      <Drawer
+        zIndex={2000}
+        opened={opened}
+        onClose={close}
+        title={
+          <div onClick={close}>
+            <User />
+          </div>
+        }
+        padding="xl"
+        size="sm"
+      >
+        <Stack>{items}</Stack>
+      </Drawer>
+    </Stack>
   );
 }
