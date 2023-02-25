@@ -6,7 +6,7 @@ import { setServiceId } from "../../../features/services/servicesSlice";
 import useSetPageTitle from "../../../hooks/shared/useSetPageTitle";
 
 import Details from "./details/Details";
-import Reviews from "./reviews/Reviews";
+import Reviews from "../../reviews/reviews-in-services/Reviews";
 import Sidebar from "./sidebar/Sidebar";
 
 export default function ServiceDetails() {

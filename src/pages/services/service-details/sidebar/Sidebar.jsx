@@ -1,6 +1,6 @@
 import { Stack } from "@mantine/core";
-import ReviewForm from "../../../../components/modify-reviews/ReviewForm/ReviewForm";
 import { ReviewFormProvider } from "../../../reviews/context/reviewFormContext";
+import ReviewForm from "../../../reviews/modify-reviews/ReviewForm/ReviewForm";
 import OtherService from "./components/OtherService";
 import ServiceActions from "./components/ServiceActions";
 

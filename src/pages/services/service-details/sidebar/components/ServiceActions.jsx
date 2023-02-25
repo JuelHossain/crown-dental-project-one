@@ -1,15 +1,13 @@
 import { Button, Group } from "@mantine/core";
 import { IconPencil } from "@tabler/icons";
-import { useAuthState } from "react-firebase-hooks/auth";
+import { useSelector } from "react-redux";
 import UpdateServiceModal from "../../../../../components/modify-services/UpdateServiceModal";
-import { useModalContext } from "../../../../../context/modalContext";
-import auth from "../../../../../firebase";
+import { selectUser } from "../../../../../features/auth/authSelector";
 import DeleteService from "./DeleteService";
 
 export default function ServiceActions() {
-  const { updateServiceModal } = useModalContext();
-  const [user] = useAuthState(auth);
-  const [, { open }] = updateServiceModal;
+  const user = useSelector(selectUser);
+
   return (
     user && (
       <Group className="w-full">

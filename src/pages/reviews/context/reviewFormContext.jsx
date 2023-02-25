@@ -35,6 +35,6 @@ export function ReviewFormProvider({ children }) {
     }
   }, [rating, sayings, setValues]);
 
-  const values = { ...form, loading, setLoading };
+  const values = { ...form, loading, setLoading, data };
   return <FormProvider form={values}>{children}</FormProvider>;
 }
