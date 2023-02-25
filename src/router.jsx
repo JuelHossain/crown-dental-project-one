@@ -5,6 +5,7 @@ import Protected from "./pages/Auth/Protected";
 
 import ErrorPage from "./pages/errors/ErrorPage";
 import Home from "./pages/home/Home";
+import ServiceDetails from "./pages/services/service-details/ServiceDetails";
 import Services from "./pages/services/Services";
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
       {
         element: <Services />,
         path: "/services",
+      },
+      {
+        path: "services/:id",
+        element: <ServiceDetails />,
       },
       {
         element: <Auth />,
