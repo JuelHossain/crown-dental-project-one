@@ -5,6 +5,7 @@ import Protected from "./pages/Auth/Protected";
 
 import ErrorPage from "./pages/errors/ErrorPage";
 import Home from "./pages/home/Home";
+import Services from "./pages/services/Services";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         element: <Home />,
         path: "/",
+      },
+      {
+        element: <Services />,
+        path: "/services",
       },
       {
         element: <Auth />,

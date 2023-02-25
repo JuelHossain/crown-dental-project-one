@@ -32,7 +32,7 @@ export default function AppHeader() {
   const { classes, cx } = useStyles();
 
   return (
-    <Header className="bg-transparent pt-4 fixed top-0 border-none">
+    <Header className="bg-transparent pt-4 fixed top-0 border-none z-10001 ">
       <Flex align="center" className={classes.inner}>
         <MobileLinks />
         <Links />

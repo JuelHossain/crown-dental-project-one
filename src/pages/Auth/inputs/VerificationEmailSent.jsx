@@ -3,7 +3,7 @@ import { Alert, Button } from "@mantine/core";
 import { sendEmailVerification } from "firebase/auth";
 import { TiTick } from "react-icons/ti";
 import { auth } from "../../../firebase";
-import useTimer from "../../../hooks/useTimer";
+import useTimer from "../../../hooks/shared/useTimer";
 import { useAuthFormContext } from "../context/authFormContext";
 
 export default function VerificationEmailSent() {

@@ -1,7 +1,7 @@
 /* eslint-disable no-plusplus */
 import { Alert } from "@mantine/core";
 import { TiTick } from "react-icons/ti";
-import useTimer from "../../../hooks/useTimer";
+import useTimer from "../../../hooks/shared/useTimer";
 
 export default function PasswordResetEmailSent() {
   const timer = useTimer(29);

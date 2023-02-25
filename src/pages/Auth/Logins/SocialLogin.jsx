@@ -6,7 +6,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useGenerateTokenMutation } from "../../../features/auth/authApi";
 import { auth } from "../../../firebase";
-import useRedirect from "../../../hooks/useRedirect";
+import useRedirect from "../../../hooks/auth/useRedirect";
 import { useAuthFormContext } from "../context/authFormContext";
 
 export default function SocialLogin() {

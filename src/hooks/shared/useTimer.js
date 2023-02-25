@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 import { useCallback, useEffect, useState } from "react";
-import useVerification from "../pages/Auth/context/hooks/useVerification";
+import useVerification from "../../pages/Auth/context/hooks/useVerification";
 
 export default function useTimer(initial, { reset } = {}) {
   const [timer, setTimer] = useState(initial || 30);

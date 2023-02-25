@@ -5,7 +5,7 @@ export default function HeaderBack() {
   const dark = colorScheme === "dark";
 
   return (
-    <div className="h-20 relative">
+    <div className="h-20 fixed w-full z-[1000]  ">
       <Overlay
         gradient={
           dark

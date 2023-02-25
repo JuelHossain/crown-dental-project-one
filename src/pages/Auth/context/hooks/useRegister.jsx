@@ -3,7 +3,7 @@ import { useAuthFormContext } from "../authFormContext";
 /* eslint-disable import/no-extraneous-dependencies */
 import { useGenerateTokenMutation } from "../../../../features/auth/authApi";
 import { auth } from "../../../../firebase";
-import useRedirect from "../../../../hooks/useRedirect";
+import useRedirect from "../../../../hooks/auth/useRedirect";
 
 export default function useRegister() {
   const { setFieldError, reset, setActiveInput, setEmailStatus, setLoading, values } = useAuthFormContext();

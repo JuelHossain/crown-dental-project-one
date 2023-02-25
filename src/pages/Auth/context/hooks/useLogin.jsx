@@ -1,7 +1,7 @@
 import { sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
 import { useGenerateTokenMutation } from "../../../../features/auth/authApi";
 import { auth } from "../../../../firebase";
-import useRedirect from "../../../../hooks/useRedirect";
+import useRedirect from "../../../../hooks/auth/useRedirect";
 import { useAuthFormContext } from "../authFormContext";
 
 export default function useLogin() {
