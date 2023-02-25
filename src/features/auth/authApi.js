@@ -2,7 +2,7 @@ import apiSlice from "../api/apiSlice";
 import { userLoggedIn, userLoggedOut } from "./authSlice";
 
 export const authApi = apiSlice.injectEndpoints({
-  endpoints: ({ query, mutation }) => ({
+  endpoints: ({ mutation }) => ({
     generateToken: mutation({
       query: (data) => ({
         url: "/users",
