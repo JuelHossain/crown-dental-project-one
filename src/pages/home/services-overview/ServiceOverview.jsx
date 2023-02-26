@@ -1,4 +1,5 @@
 import { Button, Paper } from "@mantine/core";
+import { Link } from "react-router-dom";
 import { useGetServicesQuery } from "../../../features/services/servicesApi";
 import CardPlaceHolder from "../../services/components/service-card/components/CardPlaceHolder";
 import ServiceCard from "../../services/components/service-card/ServiceCard";
@@ -24,7 +25,11 @@ export default function ServiceOverview() {
                 </p>
               </header>
 
-              <Button className="inline-block px-12 py-3 mt-8 font-medium  transition  rounded hover:shadow focus:outline-none focus:ring">
+              <Button
+                component={Link}
+                to="/services"
+                className="inline-block px-12 py-3 mt-8 font-medium  transition  rounded hover:shadow focus:outline-none focus:ring"
+              >
                 See All
               </Button>
             </div>

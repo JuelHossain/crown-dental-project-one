@@ -1,10 +1,18 @@
 import { Card, List, ThemeIcon } from "@mantine/core";
 import { TiTick } from "react-icons/ti";
+import { useMatch } from "react-router-dom";
+import fixedPhoto from "../../assets/gallery/benyamin-bohlouli-B_sK_xgzwVA-unsplash.jpg";
 
 /* eslint-disable jsx-a11y/anchor-is-valid */
 export default function Footer() {
+  const home = useMatch("/");
   return (
-    <footer aria-label="Site Footer">
+    <footer aria-label="Site Footer relative">
+      {home && (
+        <div className="fixed bottom-0 z-0 h-screen w-full">
+          <img src={fixedPhoto} alt="fixed" className="w-full h-full object-cover " />
+        </div>
+      )}
       <Card className=" lg:grid lg:grid-cols-5 p-2 sm:p-4">
         <div className="relative block h-32 lg:col-span-2 lg:h-full">
           <img

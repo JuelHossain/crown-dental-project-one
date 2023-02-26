@@ -12,11 +12,11 @@ export default function App() {
   return !authChecked ? (
     <Loading />
   ) : (
-    <div className="min-h-screen flex justify-between flex-col">
+    <div className="min-h-screen flex justify-between flex-col z-20">
       <HeaderTop />
       <AppHeader />
       {/* {(!home || !auth) && <HeaderBack />} */}
-      <div className=" flex flex-col flex-1">
+      <div className=" flex flex-col flex-1 z-20 ">
         <div className="flex-1">
           <Outlet />
         </div>
