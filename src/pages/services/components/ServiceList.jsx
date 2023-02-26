@@ -6,7 +6,6 @@ import ServiceCard from "./service-card/ServiceCard";
 
 export default function ServiceList({ page, size }) {
   const { data, isLoading } = useGetServicesQuery({ page, size });
-  console.log(data);
 
   const services = data?.map((service) => <ServiceCard key={Math.random()} {...service} />);
 
@@ -18,6 +17,7 @@ export default function ServiceList({ page, size }) {
         { maxWidth: "md", cols: 2 },
         { maxWidth: "sm", cols: 1 },
       ]}
+      className="p-2 sm:p-4"
     >
       {services}
       <LoadingOverlay visible={isLoading} />

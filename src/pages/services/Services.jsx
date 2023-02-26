@@ -9,9 +9,8 @@ export default function Services(props) {
   useSetPageTitle("Services");
 
   return (
-    <Group noWrap className={`xl:items-start  xl:flex-row flex-col mb-5 mt-24 `}>
+    <Group noWrap className={` flex-col bg-gradient-to-tl from-main-9 via-sec-0/5  `}>
       <Heading />
-      <Divider orientation="vertical" />
       <ServiceList {...props} />
       <SeeAllButton {...props} />
     </Group>
