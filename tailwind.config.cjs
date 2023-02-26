@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable global-require */
 const { getTailColors } = require("@juel/hooks/tailwind");
 
 const colors = { main: "", sec: "", neu: "" };
@@ -27,4 +29,8 @@ module.exports = {
   corePlugins: {
     preflight: false,
   },
+  plugins: [
+    require("@tailwindcss/line-clamp"),
+    // ...
+  ],
 };

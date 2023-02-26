@@ -24,7 +24,7 @@ export default function CommonLabel() {
 
   return (
     <div>
-      <h2 className="text-main-5">{title}</h2>
+      <h3 className="text-main-5">{title}</h3>
     </div>
   );
 }

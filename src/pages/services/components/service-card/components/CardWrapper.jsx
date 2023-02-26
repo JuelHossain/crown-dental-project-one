@@ -10,7 +10,7 @@ const useStyles = createStyles((theme) => ({
 export default function CardWrapper({ children }) {
   const { classes, cx } = useStyles();
   return (
-    <Card shadow="md" radius="md" className={cx(classes.card, "relative")} p="xl">
+    <Card shadow="md" radius="md" className={cx(classes.card, "relative m-0")} p="xl">
       {children}
     </Card>
   );

@@ -9,5 +9,13 @@
     margin: 0;
     padding: 0;
   }
-  
+  ul {
+    list-style: none;
+  }
+  li {
+    text-decoration: none;
+  }
+  a {
+    text-decoration: none;
+  }
 }

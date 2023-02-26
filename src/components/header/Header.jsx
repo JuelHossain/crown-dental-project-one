@@ -1,44 +1,20 @@
-import { createStyles, Flex, Group, Header } from "@mantine/core";
+import { Flex, Group, Header } from "@mantine/core";
 import ToggleTheme from "../shared/ToggleTheme";
 import Links from "./links/Links";
 import MobileLinks from "./links/MobileLinks";
 import Logo from "./logo/Logo";
 import User from "./user/User";
 
-const useStyles = createStyles((theme) => ({
-  inner: {
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: 56,
-    paddingLeft: 10,
-    paddingRight: 10,
-
-    [theme.fn.smallerThan("sm")]: {
-      justifyContent: "flex-start",
-    },
-  },
-
-  burger: {
-    marginRight: theme.spacing.md,
-
-    [theme.fn.largerThan("sm")]: {
-      display: "none",
-    },
-  },
-}));
-
 export default function AppHeader() {
-  const { classes, cx } = useStyles();
-
   return (
-    <Header className="bg-transparent pt-4 fixed top-0 border-none z-10001 ">
-      <Flex align="center" className={classes.inner}>
-        <MobileLinks />
-        <Links />
-        <Logo />
-
-        <Group spacing={6} className={cx(classes.social, "flex-1")} position="right" noWrap>
+    <Header className=" top-0 border-none sz-10001 sticky ">
+      <Flex align="center" className="justify-between">
+        <Group noWrap className="basis-9/12 xs:basis-3/6 sm:basis-2/6 xl:basis-1/6 bg-main-6 pt-2 gap-1 px-2 sm:px-4">
+          <MobileLinks />
+          <Logo />
+        </Group>
+        <Group className="basis-2/9 xs:basis-3/6 sm:basis-4/6 xl:basis-5/6 justify-end items-end flex px-2 sm:px-4">
+          <Links />
           <div className="hidden xs:block">
             <User />
           </div>

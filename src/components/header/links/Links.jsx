@@ -23,7 +23,7 @@ export default function Links() {
     );
   });
   return (
-    <Group className="hidden sm:flex flex-1" spacing={5}>
+    <Group className="hidden sm:flex" spacing={5}>
       {items}
     </Group>
   );

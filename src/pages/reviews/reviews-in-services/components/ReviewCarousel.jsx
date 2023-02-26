@@ -23,8 +23,14 @@ export default function ReviewCarousel() {
 
   return (
     <Carousel
-      slideSize="33%"
-      breakpoints={[{ maxWidth: "sm", slideSize: "100%", slideGap: 2 }]}
+      slideSize="25%"
+      breakpoints={[
+        { maxWidth: "sm", slideSize: "100%", slideGap: "sm" },
+        { maxWidth: "md", slideSize: "50%", slideGap: "md" },
+        { maxWidth: "lg", slideSize: "40%", slideGap: "lg" },
+        { maxWidth: "xl", slideSize: "33%", slideGap: "xl" },
+        { maxWidth: "xl", slideSize: "33%", slideGap: "xl" },
+      ]}
       slideGap="xl"
       align="center"
       slidesToScroll={mobile ? 1 : 2}

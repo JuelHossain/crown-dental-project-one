@@ -1,5 +1,5 @@
 import { BackgroundImage } from "@mantine/core";
-import bannerImage from "../../../assets/pexels-anna-shvets-3845981.jpg";
+import bannerImage from "../../../assets/gallery/pexels-anna-shvets-3845981.jpg";
 import BannerOverlay from "./BannerOverlay";
 import Content from "./Contect";
 

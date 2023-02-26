@@ -1,7 +1,8 @@
-import { Container, Divider, Stack } from "@mantine/core";
+import { Divider, Stack } from "@mantine/core";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import Topper from "../../../components/shared/Topper";
 import { setServiceId } from "../../../features/services/servicesSlice";
 import useSetPageTitle from "../../../hooks/shared/useSetPageTitle";
 
@@ -20,8 +21,9 @@ export default function ServiceDetails() {
   }, [id, dispatch]);
 
   return (
-    <Container className="my-10 sm:my-20 ">
-      <Stack spacing={75}>
+    <div className=" flex flex-col gap-4 sm:gap-8">
+      <Topper />
+      <Stack spacing={75} className="px-4">
         <div className="space-y-5 gap-10 sm:flex-row flex-col-reverse flex">
           <Sidebar />
           <Divider orientation="vertical" className="sm:flex hidden" />
@@ -29,6 +31,6 @@ export default function ServiceDetails() {
         </div>
         <Reviews />
       </Stack>
-    </Container>
+    </div>
   );
 }

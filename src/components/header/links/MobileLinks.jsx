@@ -40,9 +40,9 @@ export default function MobileLinks() {
     );
   });
   return (
-    <Stack className="flex-1 sm:hidden">
+    <Stack className="sm:hidden">
       <Group>
-        <Burger opened={opened} onClick={toggle} size="sm" className={classes.burger} />
+        <Burger color="white" opened={opened} onClick={toggle} size="sm" className="mb-2" />
       </Group>
       <Drawer
         zIndex={2000}
