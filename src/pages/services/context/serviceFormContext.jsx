@@ -12,24 +12,27 @@ import useSubmitHandler from "./useSubmitHandler";
 // You can give context variables any name
 export const [FormProvider, useServiceFormContext, useForm] = createFormContext();
 
-export function ServiceFormProvider({ children }) {
+export function ServiceFormProvider({ children, add }) {
   const form = useForm(serviceFormInitial);
   const serviceId = useSelector(selectServiceId);
+  console.log(serviceId);
   const { data: service } = useGetServiceQuery(serviceId);
   const { setValues, onSubmit, reset } = form;
 
   useEffect(() => {
-    if (service) {
+    if (!add && service) {
       const { _id, ...serviceData } = service;
       setValues(serviceData);
+    } else {
+      reset();
     }
-  }, [service, setValues]);
+  }, [service, setValues, reset, add]);
 
   // image upload
   const [uploadImage, uploading] = useImageUpload();
 
   // submit handler
-  const submitHandler = useSubmitHandler({ onSubmit, reset, service: serviceId ? service : undefined });
+  const submitHandler = useSubmitHandler({ onSubmit, reset, service: serviceId ? service : undefined, add });
 
   const values = { ...form, ...submitHandler, uploadImage, uploading };
   return <FormProvider form={values}>{children}</FormProvider>;

@@ -1,3 +1,5 @@
+
+
 const queryOp = ({ serviceId, email } = {}) => {
   let query = "";
   if (serviceId && email) {
@@ -10,7 +12,7 @@ const queryOp = ({ serviceId, email } = {}) => {
   return query;
 };
 
-const getReview = {
+const getReviews = {
   query: (arg) => ({ url: `/reviews${queryOp(arg)}` }),
   providesTags: (result, error, arg) =>
     result
@@ -18,4 +20,4 @@ const getReview = {
       : ["review"],
   onQueryStarted: (id, { dispatch, queryFulfilled }) => {},
 };
-export default getReview;
+export default getReviews;

@@ -2,7 +2,7 @@
 import { useAddServiceMutation, useModifyServiceMutation } from "../../../features/services/servicesApi";
 
 // submit handler
-export default function useSubmitHandler({ onSubmit, reset, service }) {
+export default function useSubmitHandler({ onSubmit, reset, service, add }) {
   // add service hook
   const [addService, { isLoading: adding, addError }] = useAddServiceMutation();
 
@@ -16,7 +16,7 @@ export default function useSubmitHandler({ onSubmit, reset, service }) {
   const submitHandler = (e) =>
     onSubmit(async (form) => {
       const data = { ...form, createdAt: new Date(), id: service?._id };
-      if (service) {
+      if (service && !add) {
         // update service
         await modifyService(data);
       } else {

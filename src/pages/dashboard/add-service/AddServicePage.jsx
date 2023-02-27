@@ -61,7 +61,7 @@ export default function AddServicePage() {
               </p>
             </div>
 
-            <ServiceFormProvider>
+            <ServiceFormProvider add>
               <ServiceForm />
             </ServiceFormProvider>
           </div>
