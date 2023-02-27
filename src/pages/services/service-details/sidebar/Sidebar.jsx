@@ -4,9 +4,9 @@ import ReviewForm from "../../../reviews/modify-reviews/ReviewForm/ReviewForm";
 import OtherService from "./components/OtherService";
 import ServiceActions from "./components/ServiceActions";
 
-export default function Sidebar() {
+export default function Sidebar({refetch}) {
   return (
-    <ReviewFormProvider>
+    <ReviewFormProvider refetch={refetch}>
       <Stack className="w-full sm:w-auto min-w-[250px]">
         <ServiceActions />
         <ReviewForm />

@@ -15,7 +15,6 @@ export const [FormProvider, useServiceFormContext, useForm] = createFormContext(
 export function ServiceFormProvider({ children, add }) {
   const form = useForm(serviceFormInitial);
   const serviceId = useSelector(selectServiceId);
-  console.log(serviceId);
   const { data: service } = useGetServiceQuery(serviceId);
   const { setValues, onSubmit, reset } = form;
 

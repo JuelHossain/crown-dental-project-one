@@ -11,25 +11,29 @@ import useSubmitHandler from "./useSubmitHandler";
 // You can give context variables any name
 export const [FormProvider, useReviewFormContext, useForm] = createFormContext();
 
-export function ReviewFormProvider({ children, id }) {
+export function ReviewFormProvider({ children, id, refetch }) {
   const form = useForm(reviewFormInitial);
   const serviceId = useSelector(selectServiceId);
   const { email } = useAuth() || {};
 
-  const { setValues, onSubmit } = form || {};
-  const { data: review, isLoading: getting } = useGetReviewQuery({ id: id || serviceId, email }) || {};
+  const { setValues, onSubmit, reset } = form || {};
+  const {
+    data: review,
+    isLoading: getting,
+    refetch: refetchThis,
+  } = useGetReviewQuery({ id: id || serviceId, email }) || {};
 
   const { rating, sayings } = review || {};
 
   useEffect(() => {
-    if (rating && sayings) {
+    if (rating || sayings) {
       setValues({ rating, sayings });
     } else {
       setValues({ rating: 0, sayings: "" });
     }
-  }, [rating, sayings, setValues]);
+  }, [rating, sayings, setValues, reset, serviceId]);
 
-  const submitHandler = useSubmitHandler({ onSubmit, review, serviceId, getting });
+  const submitHandler = useSubmitHandler({ onSubmit, review, serviceId, getting, refetch, refetchThis });
 
   const values = { ...form, ...submitHandler };
   return <FormProvider form={values}>{children}</FormProvider>;

@@ -1,5 +1,6 @@
 import { closeAllModals } from "@mantine/modals";
 import { showNotification } from "@mantine/notifications";
+import { current } from "@reduxjs/toolkit";
 import { reviewsApi } from "../reviewsApi";
 
 const modifyReview = {
@@ -8,10 +9,11 @@ const modifyReview = {
     method: "PATCH",
     body: patch,
   }),
-  invalidatesTags: (result, error, { id }) => [{ type: "review", id }],
+  // invalidatesTags: ["review"],
   onQueryStarted: async ({ id, ...patch }, { dispatch, queryFulfilled }) => {
     const patchResult = dispatch(
       reviewsApi.util.updateQueryData("getReview", id, (draft) => {
+        console.log(current(draft));// let see what we can get
         Object.assign(draft, patch);
       }),
     );

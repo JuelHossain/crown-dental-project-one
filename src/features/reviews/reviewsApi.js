@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import apiSlice from "../api/apiSlice";
 import addReview from "./helper/addReview";
 import deleteReview from "./helper/deleteReview";

@@ -22,14 +22,14 @@ export default function ServiceDetails() {
     dispatch(setServiceId(id));
   }, [id, dispatch]);
   const serviceId = useServiceId();
-  const { data: reviews } = useGetReviewsQuery({ serviceId });
+  const { data: reviews, refetch } = useGetReviewsQuery({ serviceId });
 
   return (
     <div className=" flex flex-col gap-4 sm:gap-8">
       <Topper />
       <Stack spacing={75} className="px-4 mb-10">
         <div className="gap-10 sm:flex-row flex-col-reverse flex">
-          <Sidebar />
+          <Sidebar refetch={refetch} />
           <Divider orientation="vertical" className="sm:flex hidden" />
           <Details />
           <Reviews extra="hidden xl:flex" reviews={reviews} />
