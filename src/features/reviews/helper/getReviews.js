@@ -12,7 +12,10 @@ const queryOp = ({ serviceId, email } = {}) => {
 
 const getReview = {
   query: (arg) => ({ url: `/reviews${queryOp(arg)}` }),
-  provideTags: (result, error, { serviceId, email }) => [{ type: "reviews", serviceId, email }],
+  providesTags: (result, error, arg) =>
+    result
+      ? [...result.map(({ _id, serviceId, ratingBy }) => ({ type: "review", id: _id, serviceId, ratingBy })), "review"]
+      : ["review"],
   onQueryStarted: (id, { dispatch, queryFulfilled }) => {},
 };
 export default getReview;

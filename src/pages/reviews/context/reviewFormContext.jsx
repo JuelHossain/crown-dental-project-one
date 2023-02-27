@@ -1,23 +1,23 @@
 // form-context.ts file
 import { createFormContext } from "@mantine/form";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useGetReviewQuery } from "../../../features/reviews/reviewsApi";
-import { selectServiceId } from "../../../features/services/servicesSelector";
 import useAuth from "../../../hooks/auth/useAuth";
+import useServiceId from "../../../hooks/services/useServiceId";
 import reviewFormInitial from "./helper/reviewFormInitial";
 import useSubmitHandler from "./useSubmitHandler";
 
 // You can give context variables any name
 export const [FormProvider, useReviewFormContext, useForm] = createFormContext();
 
-export function ReviewFormProvider({ children }) {
+export function ReviewFormProvider({ children, id }) {
   const form = useForm(reviewFormInitial);
-  const serviceId = useSelector(selectServiceId);
+  const serviceId = useServiceId() || {};
   const { email } = useAuth() || {};
 
   const { setValues, onSubmit } = form || {};
-  const { data: review, isLoading: getting } = useGetReviewQuery({ id: serviceId, email }) || {};
+  const { data: review, isLoading: getting } = useGetReviewQuery({ id: id || serviceId, email }) || {};
+
   const { rating, sayings } = review || {};
 
   useEffect(() => {

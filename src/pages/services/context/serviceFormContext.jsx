@@ -29,7 +29,7 @@ export function ServiceFormProvider({ children }) {
   const [uploadImage, uploading] = useImageUpload();
 
   // submit handler
-  const submitHandler = useSubmitHandler({ onSubmit, reset, service });
+  const submitHandler = useSubmitHandler({ onSubmit, reset, service: serviceId ? service : undefined });
 
   const values = { ...form, ...submitHandler, uploadImage, uploading };
   return <FormProvider form={values}>{children}</FormProvider>;

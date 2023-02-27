@@ -25,7 +25,7 @@ const apiSlice = createApi({
     }
     return result;
   },
-  tagTypes: [],
+  tagTypes: ["service", "services", "review", "reviews"],
   endpoints: () => ({}),
 });
 

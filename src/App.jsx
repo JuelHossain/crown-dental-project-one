@@ -1,4 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
+import { ModalsProvider } from "@mantine/modals";
+import { NotificationsProvider } from "@mantine/notifications";
 import { Outlet } from "react-router-dom";
 import Footer from "./components/footer/Footer";
 import AppHeader from "./components/header/Header";
@@ -12,16 +14,20 @@ export default function App() {
   return !authChecked ? (
     <Loading />
   ) : (
-    <div className="min-h-screen flex justify-between flex-col z-20">
-      <HeaderTop />
-      <AppHeader />
-      {/* {(!home || !auth) && <HeaderBack />} */}
-      <div className=" flex flex-col flex-1 z-20 ">
-        <div className="flex-1">
-          <Outlet />
+    <ModalsProvider>
+      <NotificationsProvider>
+        <div className="min-h-screen flex justify-between flex-col z-20">
+          <HeaderTop />
+          <AppHeader />
+          {/* {(!home || !auth) && <HeaderBack />} */}
+          <div className=" flex flex-col flex-1 z-20 ">
+            <div className="flex-1">
+              <Outlet />
+            </div>
+          </div>
+          <Footer />
         </div>
-      </div>
-      <Footer />
-    </div>
+      </NotificationsProvider>
+    </ModalsProvider>
   );
 }

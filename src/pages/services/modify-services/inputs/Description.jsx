@@ -7,7 +7,7 @@ export default function Description() {
 
   const editorProps = {
     ...getInputProps("description"),
-    className: "max-h-96 overflow-auto",
+    className: "max-h-96 h-60 overflow-auto",
     controls: [
       ["bold", "link", "image"],
       ["unorderedList", "orderedList", "h3", "h4"],

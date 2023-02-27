@@ -2,7 +2,7 @@ import { Avatar, Group, Text } from "@mantine/core";
 import moment from "moment";
 
 export default function UserDetails({ userDetails, ratedAt }) {
-  const { photoURL, displayName } = userDetails;
+  const { photoURL, displayName } = userDetails || {};
   const time = moment(ratedAt).fromNow();
   return (
     <Group>

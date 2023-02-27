@@ -7,10 +7,12 @@ import UserDetails from "./components/UserDetails";
 export default function ReviewCard(review) {
   return (
     <CardWrapper>
-      <Stack className="w-full relative p-2 sm:p-4">
+      <Stack className="w-full relative p-2 sm:p-4 justify-between h-full">
         <RatingAndSayings {...review} />
-        <RatingActions {...review} />
-        <UserDetails {...review} />
+        <div className="space-y-4">
+          <UserDetails {...review} />
+          <RatingActions {...review} /> 
+        </div>
       </Stack>
     </CardWrapper>
   );

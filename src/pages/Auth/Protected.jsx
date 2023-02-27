@@ -7,7 +7,7 @@ function Protected({ children }) {
   if (loggedIn) {
     return children;
   }
-  return <Navigate to="/login" state={{ from: pathname }} replace />;
+  return <Navigate to="/authentication" state={{ from: pathname }} replace />;
 }
 
 export default Protected;

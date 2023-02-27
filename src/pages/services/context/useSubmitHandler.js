@@ -15,7 +15,7 @@ export default function useSubmitHandler({ onSubmit, reset, service }) {
 
   const submitHandler = (e) =>
     onSubmit(async (form) => {
-      const data = { ...form, createdAt: new Date(), id: service._id };
+      const data = { ...form, createdAt: new Date(), id: service?._id };
       if (service) {
         // update service
         await modifyService(data);

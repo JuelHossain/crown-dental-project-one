@@ -18,7 +18,9 @@ export default function UpdateRating({ id, name }) {
       size: 500,
     });
   return (
-    <ActionIcon onClick={openDeleteModal} variant="light" color="red">
+    <ActionIcon onClick={() => {
+      openDeleteModal()
+    }} variant="light" color="red">
       <FaPencilAlt size={18} />
     </ActionIcon>
   );

@@ -1,5 +1,6 @@
 import { closeAllModals } from "@mantine/modals";
 import { showNotification } from "@mantine/notifications";
+import { servicesApi } from "../servicesApi";
 
 const modifyService = {
   query: ({ id, ...patch }) => ({
@@ -7,8 +8,13 @@ const modifyService = {
     method: "PATCH",
     body: patch,
   }),
-  invalidatesTags: (result, error, { id }) => [{ type: "service", id }],
-  onQueryStarted: async ({ id, ...patch }, { queryFulfilled }) => {
+  invalidatesTags: (result, error, { id }) => [{ type: "service", id }, "service"],
+  onQueryStarted: async ({ id, ...patch }, { dispatch, queryFulfilled }) => {
+    const patchResult = dispatch(
+      servicesApi.util.updateQueryData("getService", id, (draft) => {
+        Object.assign(draft, patch);
+      }),
+    );
     try {
       await queryFulfilled;
       closeAllModals();
@@ -16,7 +22,7 @@ const modifyService = {
       // success handling
       showNotification({ title: `Service has been Modified successfully` });
     } catch (err) {
-      console.log(err);
+      patchResult.undo();
       // error handling here.
       showNotification({ title: `There was a problem modifying a service` });
     }

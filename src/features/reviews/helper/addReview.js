@@ -4,6 +4,7 @@ const addReview = {
     method: "POST",
     body: data,
   }),
+  invalidatesTag: ["reviews"],
   onQueryStarted: async (arg, { queryFulfilled, dispatch }) => {},
 };
 export default addReview;
