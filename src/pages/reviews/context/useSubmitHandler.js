@@ -1,15 +1,15 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-shadow */
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { selectUser } from "../../../features/auth/authSelector";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useAddReviewMutation, useModifyReviewMutation } from "../../../features/reviews/reviewsApi";
+import useAuth from "../../../hooks/auth/useAuth";
 
 export default function useSubmitHandler({ onSubmit, review, serviceId, getting }) {
-  const { email, photoURL, displayName } = useSelector(selectUser) || {};
+  const { email, photoURL, displayName } = useAuth() || {};
 
   const [addReview, { isLoading: adding }] = useAddReviewMutation();
   const [modifyReview, { isLoading: modifying }] = useModifyReviewMutation();
+  const { pathname } = useLocation();
 
   const navigate = useNavigate();
 
@@ -26,10 +26,10 @@ export default function useSubmitHandler({ onSubmit, review, serviceId, getting 
       })(e);
     } else {
       e.preventDefault();
-      navigate("/authentication");
+      navigate("/authentication", { state: { from: pathname }, replace: true });
     }
   };
 
   const loading = adding || modifying || getting;
-  return { submitHandler, loading };
+  return { submitHandler, loading, review };
 }

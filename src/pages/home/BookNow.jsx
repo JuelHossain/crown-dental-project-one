@@ -5,19 +5,19 @@ import { FaRegClock, FaRegCreditCard, FaRegHeart, FaRegStar } from "react-icons/
 
 const nothing = [
   {
-    Icon: <FaRegClock size={40} />,
+    Icon: <FaRegClock className="text-main-5" size={40} />,
     text: "Book a 90-minute new patient visit",
   },
   {
-    Icon: <FaRegStar size={50} />,
+    Icon: <FaRegStar className="text-main-5" size={50} />,
     text: "Get high-quality dental care for the whole family",
   },
   {
-    Icon: <FaRegHeart size={50} />,
+    Icon: <FaRegHeart className="text-main-5" size={50} />,
     text: "Feel safe with air purification & medical-grade sterilization",
   },
   {
-    Icon: <FaRegCreditCard size={40} />,
+    Icon: <FaRegCreditCard className="text-main-5" size={40} />,
     text: "Know you’re covered — most insurance accepted!",
   },
 ];

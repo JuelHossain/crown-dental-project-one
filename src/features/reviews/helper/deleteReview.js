@@ -6,7 +6,7 @@ const deleteReview = {
   invalidatesTags: (result, error, id) => [{ type: "review", id }],
   onQueryStarted: async (arg, { queryFulfilled }) => {
     try {
-      await queryFulfilled();
+      await queryFulfilled;
       // success
     } catch (err) {
       // error

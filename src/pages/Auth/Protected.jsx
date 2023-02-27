@@ -3,11 +3,11 @@ import useAuth from "../../hooks/auth/useAuth";
 
 function Protected({ children }) {
   const loggedIn = useAuth();
-  const location = useLocation();
+  const { pathname } = useLocation();
   if (loggedIn) {
     return children;
   }
-  return <Navigate to="/login" state={{ from: location }} replace />;
+  return <Navigate to="/login" state={{ from: pathname }} replace />;
 }
 
 export default Protected;

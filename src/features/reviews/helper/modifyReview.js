@@ -9,12 +9,13 @@ const modifyReview = {
   invalidatesTags: (result, error, { id }) => [{ type: "review", id }],
   onQueryStarted: async ({ id, ...patch }, { queryFulfilled }) => {
     try {
-      await queryFulfilled();
+      await queryFulfilled;
       // success handling
-      showNotification({ title: `Review has been added successfully` });
+      showNotification({ title: `Review has been modified successfully` });
     } catch (err) {
+      console.log(err);
       // error handling here.
-      showNotification({ title: `There was a problem adding a Review` });
+      showNotification({ title: `There was a problem modifying a Review` });
     }
   },
 };

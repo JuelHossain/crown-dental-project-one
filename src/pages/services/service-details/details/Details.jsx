@@ -5,9 +5,8 @@ import Description from "./Description";
 
 export default function Details() {
   const serviceId = useServiceId();
-  console.log(serviceId);
   const { data: { name, description } = {}, isLoading } = useGetServiceQuery(serviceId) || {};
-  console.log(name);
+
   return (
     <Stack className="md:basis-2/3 sm:basis-1/2">
       <Title>{name}</Title>

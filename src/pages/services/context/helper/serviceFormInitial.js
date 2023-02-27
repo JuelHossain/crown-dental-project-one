@@ -14,8 +14,8 @@ const serviceFormInitial = {
   validate: {
     name: isNotEmpty("Service name is required"),
     cost: isNotEmpty("Service cost is Required"),
-    short: hasLength({ min: 100 }, "Maximum 100 character please"),
-    description: hasLength({ max: 100 }, "minimum 100 character please"),
+    short: hasLength({ max: 100 }, "Maximum 100 character please"),
+    description: hasLength({ min: 100 }, "minimum 100 character please"),
     imageLink: isNotEmpty("Image Link is required"),
   },
 };

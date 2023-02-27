@@ -1,7 +1,7 @@
 import { Button, Group } from "@mantine/core";
 import { FaPencilAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import openServiceModal from "../../../../../components/modals/updateServiceModal";
+import openServiceModal from "../../../../../components/modals/serviceFormModal";
 import { selectUser } from "../../../../../features/auth/authSelector";
 import DeleteService from "./DeleteService";
 

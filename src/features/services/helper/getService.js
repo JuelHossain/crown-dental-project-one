@@ -1,10 +1,9 @@
 const getService = {
   query: (id) => ({ url: `/services/${id}` }),
   provideTags: (result, error, id) => [{ type: "service", id }],
-  onQueryStarted: async (id, { dispatch, queryFulfilled }) => {
+  onQueryStarted: async (id, { queryFulfilled }) => {
     try {
-      const data = await queryFulfilled;
-      console.log(data);
+      await queryFulfilled;
     } catch (err) {
       console.log(err);
     }

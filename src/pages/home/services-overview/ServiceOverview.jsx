@@ -6,7 +6,6 @@ import ServiceCard from "../../services/components/service-card/ServiceCard";
 
 export default function ServiceOverview() {
   const { data, isLoading } = useGetServicesQuery({ page: 0, size: 4 });
-  console.log(data);
 
   const services = data?.map((service) => <ServiceCard key={Math.random()} {...service} />);
   const skeleton = [1, 2, 3, 4].map((n) => <CardPlaceHolder key={n} />);
@@ -20,7 +19,7 @@ export default function ServiceOverview() {
                 <h2 className="text-xl font-bold sm:text-3xl">Services</h2>
 
                 <p className="mt-4 text-gray-500">
-                  Her is all of the service we provide to you. if you are looking for other services please click on the
+                  Here is all of the service we provide to you. if you are looking for other services please click on the
                   button below this text.
                 </p>
               </header>

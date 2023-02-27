@@ -10,7 +10,7 @@ export default function openServiceModal() {
         <ServiceForm />
       </ServiceFormProvider>
     ),
-    size: 500,
+    size: 800,
     overlayBlur: 1,
     zIndex: 10000,
     title: <Title order={4}>Please Update This Service,</Title>,

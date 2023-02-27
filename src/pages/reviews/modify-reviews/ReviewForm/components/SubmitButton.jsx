@@ -9,7 +9,9 @@ export default function SubmitButton() {
   const { review } = useReviewFormContext();
   return (
     <Group position="right">
-      <Button type="submit">{review ? "Update" : user ? "Submit" : "Please Login"}</Button>
+      <Button fullWidth type="submit">
+        {review ? "Update" : user ? "Submit" : "Please Login"}
+      </Button>
     </Group>
   );
 }

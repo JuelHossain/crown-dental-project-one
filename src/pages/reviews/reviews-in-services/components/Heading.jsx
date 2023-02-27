@@ -1,16 +1,13 @@
-import { Container, Text, Title } from "@mantine/core";
+/* eslint-disable react/no-unescaped-entities */
+import { Center } from "@mantine/core";
 
 export default function Heading() {
   return (
-    <div className="bg-neu-1 dark:bg-neu-9/90 p-10">
-      <Container size="xs">
-        <Title order={3} align="center">
-          What Our Customer's are saying?
-        </Title>
-        <Text align="center">
-          You can give us a rating too. please give us a rating from the left corner of this page.
-        </Text>
-      </Container>
+    <div className="bg-main-0 text-neu-7  p-10">
+      <Center className="bg-main-0 py-3 sm:py-6 text-center flex-col">
+        <h2 className="text-4xl text-neu-7">What our customer's are Saying</h2>
+        <div className="h-1 w-full bg-sec-5 max-w-sm " />
+      </Center>
     </div>
   );
 }

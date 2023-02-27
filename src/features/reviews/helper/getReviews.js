@@ -1,4 +1,4 @@
-const queryOp = ({ serviceId, email }) => {
+const queryOp = ({ serviceId, email } = {}) => {
   let query = "";
   if (serviceId && email) {
     query = `?serviceId=${serviceId}&email=${email}`;

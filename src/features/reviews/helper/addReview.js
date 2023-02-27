@@ -1,6 +1,6 @@
 const addReview = {
   query: (data) => ({
-    url: "/Reviews",
+    url: "/reviews",
     method: "POST",
     body: data,
   }),

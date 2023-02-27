@@ -13,7 +13,7 @@ export default function useSubmitHandler({ onSubmit, reset, service }) {
   const loading = adding || modifying;
   const error = addError || modifyError;
 
-  const submitHandler = () =>
+  const submitHandler = (e) =>
     onSubmit(async (form) => {
       const data = { ...form, createdAt: new Date(), id: service._id };
       if (service) {
@@ -24,6 +24,6 @@ export default function useSubmitHandler({ onSubmit, reset, service }) {
         await addService(data);
         reset();
       }
-    });
+    })(e);
   return { submitHandler, loading, error };
 }

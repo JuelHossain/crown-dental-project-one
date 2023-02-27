@@ -7,7 +7,7 @@ import ServiceActions from "./components/ServiceActions";
 export default function Sidebar() {
   return (
     <ReviewFormProvider>
-      <Stack className="w-full sm:w-auto">
+      <Stack className="w-full sm:w-auto min-w-[250px]">
         <ServiceActions />
         <ReviewForm />
         <OtherService />
