@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 /* eslint-disable no-underscore-dangle */
 import { reviewsApi } from "../reviewsApi";
 
@@ -10,14 +11,14 @@ const deleteReview = {
   onQueryStarted: async (id, { dispatch, queryFulfilled, getState }) => {
     const patchResult = dispatch(
       reviewsApi.util.updateQueryData("getReviews", id, (draft) =>
-        draft.filter((review) => review._id.toString() !== id.toString()),
+      draft.filter((review) => review._id.toString() !== id.toString()),
       ),
-    );
+  );
     const { serviceId } = getState().services || {};
     const { email } = getState().auth.user || {};
     const patchResult2 = dispatch(
       reviewsApi.util.updateQueryData("getReviews", serviceId, (draft) =>
-        draft.filter((review) => review.serviceId.toString() !== serviceId.toString()),
+      draft.filter((review) => review.serviceId.toString() !== serviceId.toString()),
       ),
     );
     const patchResult3 = dispatch(

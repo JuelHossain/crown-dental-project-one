@@ -1,3 +1,5 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable no-console */
 import { closeAllModals } from "@mantine/modals";
 import { showNotification } from "@mantine/notifications";
 import { current } from "@reduxjs/toolkit";
@@ -13,7 +15,8 @@ const modifyReview = {
   onQueryStarted: async ({ id, ...patch }, { dispatch, queryFulfilled }) => {
     const patchResult = dispatch(
       reviewsApi.util.updateQueryData("getReview", id, (draft) => {
-        console.log(current(draft));// let see what we can get
+        console.log(current(draft)); // let see what we can get
+        console.log(current(draft)); // let see what we can get
         Object.assign(draft, patch);
       }),
     );

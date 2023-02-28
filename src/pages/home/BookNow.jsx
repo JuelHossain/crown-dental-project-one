@@ -48,6 +48,6 @@ export default function BookNow() {
     </Group>
   ));
   return (
-    <Box className="bg-main-0 text-center grid grid-cols-2 sm:grid-cols-4 text-neu-7 py-4 sm:py-8">{hereIsNothing}</Box>
+    <Box className="bg-neu-0 text-center grid grid-cols-2 sm:grid-cols-4 text-neu-7 py-4 sm:py-8">{hereIsNothing}</Box>
   );
 }

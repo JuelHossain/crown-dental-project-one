@@ -1,5 +1,4 @@
-
-
+/* eslint-disable no-unused-vars */
 const queryOp = ({ serviceId, email } = {}) => {
   let query = "";
   if (serviceId && email) {

@@ -5,6 +5,7 @@ import { logos, titleLogos } from "./companyImages";
 import Companys from "./Companys";
 import Gallery from "./Gallery";
 import HomePageReviews from "./HomePageReviews";
+import Schedule from "./Schedule";
 import ServiceOverview from "./services-overview/ServiceOverview";
 import WhyYouWillLoveIt from "./WhyYouWillLoveIt";
 
@@ -17,10 +18,11 @@ export default function Home() {
       <Companys images={titleLogos} />
       <Gallery />
       <HomePageReviews />
+      <BookNow />
       <WhyYouWillLoveIt />
       <ComeVisitUs />
-      <BookNow />
-      <div className="h-[500px]" />
+      <Schedule />
+      {/* <div className="h-[500px]" /> */}
     </div>
   );
 }
