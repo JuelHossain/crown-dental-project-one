@@ -15,23 +15,23 @@ export const [FormProvider, useServiceFormContext, useForm] = createFormContext(
 export function ServiceFormProvider({ children, add }) {
   const form = useForm(serviceFormInitial);
   const serviceId = useSelector(selectServiceId);
-  const { data: service } = useGetServiceQuery(serviceId);
+  const { data: service } = useGetServiceQuery(serviceId, { skip: !serviceId });
   const { setValues, onSubmit, reset } = form;
 
   useEffect(() => {
-    if (!add && service) {
-      const { _id, ...serviceData } = service;
+    if (serviceId && service) {
+      const { _id, ...serviceData } = service || {};
       setValues(serviceData);
     } else {
       reset();
     }
-  }, [service, setValues, reset, add]);
+  }, [service, setValues, reset, add, serviceId]);
 
   // image upload
   const [uploadImage, uploading] = useImageUpload();
 
   // submit handler
-  const submitHandler = useSubmitHandler({ onSubmit, reset, service: serviceId ? service : undefined, add });
+  const submitHandler = useSubmitHandler({ onSubmit, reset, service, add });
 
   const values = { ...form, ...submitHandler, uploadImage, uploading };
   return <FormProvider form={values}>{children}</FormProvider>;

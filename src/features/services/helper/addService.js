@@ -1,6 +1,5 @@
 /* eslint-disable import/no-cycle */
 import { showNotification } from "@mantine/notifications";
-import { current } from "@reduxjs/toolkit";
 import { servicesApi } from "../servicesApi";
 
 const addService = {
@@ -9,24 +8,28 @@ const addService = {
     method: "POST",
     body: data,
   }),
-  invalidatesTags: ["service", "services"],
-  onQueryStarted: async (data, { dispatch, queryFulfilled }) => {
+  onQueryStarted: async (data, { getState, dispatch, queryFulfilled }) => {
     try {
+      // getting the updated data from the server in that case i am expecting a inserted id to be returned from the server after successfully added the data to the mongodb
       const { data: { insertedId } = {} } = (await queryFulfilled) ?? {};
-      console.log(insertedId); // this is logged
+
+      // getting the page and size from the store
+      const { pagination } = getState()?.services || {};
+
+      // pessimistic update.
+
       dispatch(
-        servicesApi.util.updateQueryData("getServices", "", (draft) => {
-          console.log(current(draft)); // cannot get this
-          console.log("hello there what is the problem?"); // cannot get this as well
-          draft.push({ ...data, _id: insertedId });
+        servicesApi.util.updateQueryData("getServices", pagination, (draft) => {
+          // console.log("current(draft) :>> ", current(draft));
+          draft.unshift({ ...data, _id: insertedId });
         }),
       );
       // success handling
       showNotification({ title: `Service has been added successfully` });
     } catch (err) {
       // error handling here.
-      console.log(err);
       showNotification({ title: `There was a problem adding a service` });
+      console.log(err);
     }
   },
 };

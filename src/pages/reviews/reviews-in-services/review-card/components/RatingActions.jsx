@@ -8,7 +8,7 @@ import DeleteRating from "./DeleteRating";
 import UpdateRating from "./UpdateRating";
 
 export default function RatingActions({ serviceId, _id }) {
-  const { data, isLoading } = useGetServiceQuery(serviceId) || {};
+  const { data, isLoading } = useGetServiceQuery(serviceId, { skip: !serviceId }) || {};
   const { name } = data || {};
   const user = useAuth();
   const inMyReviews = useMatch("/dashboard/my-reviews");
@@ -20,7 +20,7 @@ export default function RatingActions({ serviceId, _id }) {
           {isLoading ? <Loading /> : `for ${name}` || "Doesn't Exist"}
         </Badge>
         <Group>
-          <UpdateRating id={serviceId} name={name} />
+          <UpdateRating id={_id} name={name} />
           <DeleteRating id={_id} name={name} />
         </Group>
       </Stack>

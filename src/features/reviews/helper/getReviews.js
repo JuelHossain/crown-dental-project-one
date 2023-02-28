@@ -1,4 +1,7 @@
 /* eslint-disable no-unused-vars */
+
+// login to make query request depending on the arguments. 
+
 const queryOp = ({ serviceId, email } = {}) => {
   let query = "";
   if (serviceId && email) {
@@ -12,11 +15,13 @@ const queryOp = ({ serviceId, email } = {}) => {
 };
 
 const getReviews = {
+  // query function
   query: (arg) => ({ url: `/reviews${queryOp(arg)}` }),
-  providesTags: (result, error, arg) =>
-    result
-      ? [...result.map(({ _id, serviceId, ratingBy }) => ({ type: "review", id: _id, serviceId, ratingBy })), "review"]
-      : ["review"],
-  onQueryStarted: (id, { dispatch, queryFulfilled }) => {},
+  // providing tags to keep track of the query
+  providesTags: (result, error, arg) => [{ type: "reviews", ...arg }, "reviews"],
+  // handling success and errors
+  onQueryStarted: (id, { dispatch, queryFulfilled }) => {
+    
+  },
 };
 export default getReviews;

@@ -7,33 +7,25 @@ const deleteReview = {
     url: `/reviews/${id}`,
     method: "DELETE",
   }),
-  invalidatesTags: ["review"],
+  // invalidating tags to refetch the query after deleting data data from the server.
+  // invalidatesTags: ["reviews"],
+  // handling success and errors.
   onQueryStarted: async (id, { dispatch, queryFulfilled, getState }) => {
-    const patchResult = dispatch(
-      reviewsApi.util.updateQueryData("getReviews", id, (draft) =>
-      draft.filter((review) => review._id.toString() !== id.toString()),
-      ),
-  );
     const { serviceId } = getState().services || {};
-    const { email } = getState().auth.user || {};
-    const patchResult2 = dispatch(
-      reviewsApi.util.updateQueryData("getReviews", serviceId, (draft) =>
-      draft.filter((review) => review.serviceId.toString() !== serviceId.toString()),
+    const { email } = getState().auth?.user || {};
+    const patchResult = dispatch(
+      // optimistic cache update after deleting the data from the server.
+      reviewsApi.util.updateQueryData("getReviews", { serviceId, email }, (draft) =>
+        draft.filter((review) => review._id.toString() !== id.toString()),
       ),
     );
-    const patchResult3 = dispatch(
-      reviewsApi.util.updateQueryData("getReviews", email, (draft) =>
-        draft.filter((review) => review.ratingBy.toString() !== email),
-      ),
-    );
+
     try {
       await queryFulfilled;
-      // success
+      // success handling
     } catch (err) {
-      // error
+      // error handling
       patchResult.undo();
-      patchResult2.undo();
-      patchResult3.undo();
     }
   },
 };

@@ -2,7 +2,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  serviceId: "",
+  serviceId: undefined,
+  pagination: {},
 };
 
 const servicesSlice = createSlice({
@@ -12,8 +13,11 @@ const servicesSlice = createSlice({
     setServiceId: (state, { payload }) => {
       state.serviceId = payload;
     },
+    setPagination: (state, { payload }) => {
+      state.pagination = payload;
+    },
   },
 });
 
-export const { setServiceId } = servicesSlice.actions;
+export const { setServiceId, setPagination } = servicesSlice.actions;
 export default servicesSlice.reducer;

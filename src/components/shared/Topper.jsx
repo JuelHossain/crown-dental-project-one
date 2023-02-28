@@ -1,9 +1,6 @@
 import { BackgroundImage, Stack } from "@mantine/core";
 
 export default function Topper() {
-  const theme = {
-    colorScheme: "light",
-  };
   return (
     <BackgroundImage
       src="https://cdn.pixabay.com/photo/2016/03/13/04/01/certificate-1253260_960_720.png"

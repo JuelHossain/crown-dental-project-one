@@ -1,13 +1,16 @@
-const query = (email) => (email ? `?email=${email}` : "");
-
 const getReview = {
-  query: ({ id, email }) => ({ url: `/reviews/${id}${query(email)}` }),
-  provideTags: (result, error, { id, email }) => [{ type: "review", id, email }, "review"],
-  onQueryStarted: async ({ id }, { dispatch, queryFulfilled }) => {
+  // query fn
+  query: (id) => ({ url: `/reviews/${id}` }),
+  // providing tags to keep track of the query
+  provideTags: (result, error, id) => [{ type: "review", id }, "review"],
+  // handling success and errors
+  onQueryStarted: async (arg, { queryFulfilled }) => {
     try {
       await queryFulfilled;
-    } catch {
-      // nothing
+      // success handling
+    } catch (error) {
+      // error handling
+      console.log(error);
     }
   },
 };
