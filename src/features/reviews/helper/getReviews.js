@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import { setGetReviewsArg } from "../reviewsSlice";
+import { setArg } from "../reviewsSlice";
 
 // login to make query request depending on the arguments.
 
@@ -16,14 +16,23 @@ const queryOp = ({ serviceId, email } = {}) => {
   return query;
 };
 
-const getReviews = {
-  // query function
-  query: (arg) => ({ url: `/reviews${queryOp(arg)}` }),
-  // providing tags to keep track of the query
-  providesTags: (result, error, arg) => [{ type: "reviews", ...arg }, "reviews"],
-  // handling success and errors
-  onQueryStarted: (arg, { dispatch, queryFulfilled }) => {
-    dispatch(setGetReviewsArg(arg));
+export const getReviews = {
+  query: (arg, b) => {
+    console.log("🚀 ~ file: getReviews.js:19 ~ b:", b);
+    console.log("b :>> ", b);
+    return {
+      url: `/reviews`,
+    };
   },
 };
-export default getReviews;
+
+export const getUserReviews = {
+  query: (email) => ({ url: `/reviews?email=${email}` }),
+};
+
+export const getServiceReviews = {
+  query: (serviceId) => ({ url: `/reviews?serviceId=${serviceId}` }),
+  onQueryStarted: async (serviceId, { dispatch, queryFulfilled }) => {
+    dispatch(setArg({ serviceId }));
+  },
+};

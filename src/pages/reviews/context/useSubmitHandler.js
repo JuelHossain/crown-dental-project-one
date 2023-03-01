@@ -19,7 +19,7 @@ export default function useSubmitHandler({ onSubmit, review, serviceId, getting 
       onSubmit(async (form) => {
         const rating = { ...form, serviceId, userDetails, ratedAt: new Date(), ratingBy: email };
         if (review) {
-          await modifyReview({ ...form, id: review._id });
+          await modifyReview({ ...form, id: review._id, editedBy: email, editedAt: new Date() });
         } else {
           await addReview(rating);
         }

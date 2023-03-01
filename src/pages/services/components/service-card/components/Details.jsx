@@ -1,4 +1,8 @@
 import { createStyles, Text } from "@mantine/core";
+import { useLocation } from "react-router-dom";
+import useAuth from "../../../../../hooks/auth/useAuth";
+
+import ServiceActions from "../../../service-details/sidebar/components/ServiceActions";
 
 const useStyles = createStyles((theme) => ({
   cardTitle: {
@@ -13,16 +17,22 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export default function Details({ name, short }) {
+export default function Details({ name, short, _id }) {
   const { classes, cx } = useStyles();
+  const { admin } = useAuth() || {};
+  const inDash = useLocation()?.pathname.includes("dashboard");
   return (
     <>
       <Text size="lg" weight={500} className={cx(classes.cardTitle, "uppercase")} mt="md">
         {name}
       </Text>
-      <Text size="sm" color="dimmed" mt="sm">
-        {short}
-      </Text>
+      {admin && inDash ? (
+        <ServiceActions serviceId={_id} />
+      ) : (
+        <Text size="sm" color="dimmed" mt="sm">
+          {short}
+        </Text>
+      )}
     </>
   );
 }

@@ -2,9 +2,7 @@
 // form-context.ts file
 import { createFormContext } from "@mantine/form";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import { useGetServiceQuery } from "../../../features/services/servicesApi";
-import { selectServiceId } from "../../../features/services/servicesSelector";
 import useImageUpload from "../../../hooks/shared/useImageUpload";
 import serviceFormInitial from "./helper/serviceFormInitial";
 import useSubmitHandler from "./useSubmitHandler";
@@ -12,9 +10,8 @@ import useSubmitHandler from "./useSubmitHandler";
 // You can give context variables any name
 export const [FormProvider, useServiceFormContext, useForm] = createFormContext();
 
-export function ServiceFormProvider({ children, add }) {
+export function ServiceFormProvider({ children, serviceId, add }) {
   const form = useForm(serviceFormInitial);
-  const serviceId = useSelector(selectServiceId);
   const { data: service } = useGetServiceQuery(serviceId, { skip: !serviceId });
   const { setValues, onSubmit, reset } = form;
 

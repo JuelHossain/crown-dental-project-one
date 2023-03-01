@@ -3,10 +3,10 @@ import { openModal } from "@mantine/modals";
 import { ServiceFormProvider } from "../../pages/services/context/serviceFormContext";
 import ServiceForm from "../../pages/services/modify-services/ServiceForm";
 
-export default function openServiceModal() {
+export default function openServiceModal(serviceId) {
   openModal({
     children: (
-      <ServiceFormProvider>
+      <ServiceFormProvider serviceId={serviceId}>
         <ServiceForm />
       </ServiceFormProvider>
     ),

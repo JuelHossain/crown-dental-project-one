@@ -1,6 +1,7 @@
 import { Button, Center, Stack } from "@mantine/core";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/auth/useAuth";
+import Services from "../services/Services";
 import AddServicePage from "./add-service/AddServicePage";
 import MyAppointments from "./my-appointments/MyAppointments";
 import MyReviews from "./my-reviews/MyReviews";
@@ -20,7 +21,12 @@ export const linksForAdmin = [
   {
     label: "Manage Services",
     link: "/dashboard/manage-services",
-    element: <MyAppointments />,
+    element: <Services />,
+  },
+  {
+    label: "Manage Reviews",
+    link: "/dashboard/manage-reviews",
+    element: <MyReviews />,
   },
   {
     label: "Manage Schedule",

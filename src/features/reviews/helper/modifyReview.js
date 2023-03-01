@@ -13,7 +13,6 @@ const modifyReview = {
   // invalidatesTags: ["review"],
   onQueryStarted: async ({ id, ...patch }, { dispatch, queryFulfilled }) => {
     // optimistic update
-
     const patchResult = dispatch(
       reviewsApi.util.updateQueryData("getReview", id, (draft) => Object.assign(draft, patch)),
     );

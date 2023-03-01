@@ -1,7 +1,5 @@
-export default function ManageServices (){
-  return (
-    <div>
-      this is ManageServices
-    </div>
-  )
-};
+import Services from "../../services/Services";
+
+export default function ManageServices() {
+  return <Services />;
+}

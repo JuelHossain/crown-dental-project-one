@@ -4,15 +4,21 @@ import openServiceModal from "../../../../../components/modals/serviceFormModal"
 import useAuth from "../../../../../hooks/auth/useAuth";
 import DeleteService from "./DeleteService";
 
-export default function ServiceActions() {
+export default function ServiceActions({ serviceId }) {
+  console.log("🚀 ~ file: ServiceActions.jsx:8 ~ ServiceActions ~ serviceId:", serviceId)
   const user = useAuth();
   return (
     user && (
-      <Group className="w-full">
-        <Button className="flex-1" onClick={openServiceModal} leftIcon={<FaPencilAlt size={18} />}>
+      <Group className="w-full mt-4">
+        <Button
+          variant="light"
+          className="flex-1"
+          onClick={() => openServiceModal(serviceId)}
+          leftIcon={<FaPencilAlt size={18} />}
+        >
           Edit
         </Button>
-        <DeleteService />
+        <DeleteService serviceId={serviceId} />
       </Group>
     )
   );

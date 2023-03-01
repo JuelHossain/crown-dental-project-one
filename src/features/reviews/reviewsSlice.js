@@ -2,18 +2,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  getReviewsArg: {},
+  arg: {},
 };
 
 const reviewsSlice = createSlice({
   name: "reviews",
   initialState,
   reducers: {
-    setGetReviewsArg: (state, { payload }) => {
-      state.getReviewsArg = payload;
+    setArg: (state, { payload }) => {
+      Object.assign(state.arg, payload);
     },
   },
 });
 
-export const { setGetReviewsArg } = reviewsSlice.actions;
+export const { setArg } = reviewsSlice.actions;
 export default reviewsSlice.reducer;

@@ -15,7 +15,7 @@ export default function Heading({ title, badge, text }) {
 
       <Text className="text-center max-w-2xl mx-auto">
         {text ||
-          "Select your desired service and book an appointment now. if you have taken any of those service already pleaseprovide a review . we will be glad to know what you think about us."}
+          "Select your desired service and book an appointment now. if you have taken any of those service already please provide a review . we will be glad to know what you think about us."}
       </Text>
     </Stack>
   );

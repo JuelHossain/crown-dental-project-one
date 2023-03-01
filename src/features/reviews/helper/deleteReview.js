@@ -11,10 +11,26 @@ const deleteReview = {
   // invalidatesTags: ["reviews"],
   // handling success and errors.
   onQueryStarted: async (id, { dispatch, queryFulfilled, getState }) => {
-    const { getReviewsArg } = getState().reviews;
+    // getting the page and size from the store
+    const { serviceId } = getState()?.reviews?.arg || {};
+    const { email } = getState()?.auth?.user || {};
+
     const patchResult = dispatch(
       // optimistic cache update after deleting the data from the server.
-      reviewsApi.util.updateQueryData("getReviews", getReviewsArg, (draft) =>
+      reviewsApi.util.updateQueryData("getReviews", {}, (draft) =>
+        draft.filter((review) => review?._id.toString() !== id.toString()),
+      ),
+    );
+
+    const patchResult2 = dispatch(
+      // optimistic cache update after deleting the data from the server.
+      reviewsApi.util.updateQueryData("getUserReviews", email, (draft) =>
+        draft.filter((review) => review?._id.toString() !== id.toString()),
+      ),
+    );
+    const patchResult3 = dispatch(
+      // optimistic cache update after deleting the data from the server.
+      reviewsApi.util.updateQueryData("getServiceReviews", serviceId, (draft) =>
         draft.filter((review) => review?._id.toString() !== id.toString()),
       ),
     );
@@ -25,6 +41,8 @@ const deleteReview = {
     } catch (err) {
       // error handling
       patchResult.undo();
+      patchResult2.undo();
+      patchResult3.undo();
     }
   },
 };

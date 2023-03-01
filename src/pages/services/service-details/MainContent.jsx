@@ -1,6 +1,6 @@
 import { Divider, Stack } from "@mantine/core";
 import Loading from "../../../components/shared/Loading";
-import { useGetReviewsQuery } from "../../../features/reviews/reviewsApi";
+import { useGetServiceReviewsQuery } from "../../../features/reviews/reviewsApi";
 import useServiceId from "../../../hooks/services/useServiceId";
 import Reviews from "../../reviews/reviews-in-services/Reviews";
 import Details from "./details/Details";
@@ -8,10 +8,7 @@ import Sidebar from "./sidebar/Sidebar";
 
 export default function MainContent() {
   const serviceId = useServiceId();
-  const { data: reviews, isLoading } = useGetReviewsQuery(
-    { serviceId },
-    { skip: !serviceId, refetchOnMountOrArgChange: true },
-  );
+  const { data: reviews, isLoading } = useGetServiceReviewsQuery(serviceId);
 
   return (
     <Stack spacing={75} className="px-4 mb-10">

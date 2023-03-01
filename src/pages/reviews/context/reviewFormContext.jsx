@@ -2,7 +2,7 @@
 import { createFormContext } from "@mantine/form";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useGetReviewsQuery } from "../../../features/reviews/reviewsApi";
+import { useGetServiceReviewsQuery } from "../../../features/reviews/reviewsApi";
 import { selectServiceId } from "../../../features/services/servicesSelector";
 import useAuth from "../../../hooks/auth/useAuth";
 import reviewFormInitial from "./helper/reviewFormInitial";
@@ -16,10 +16,9 @@ export function ReviewFormProvider({ children }) {
   const serviceId = useSelector(selectServiceId);
   const { email } = useAuth() || {};
   const { setValues, onSubmit, reset } = form || {};
-  const { data: review, isLoading: getting } =
-    useGetReviewsQuery({ serviceId, email }, { refetchOnMountOrArgChange: true }) || {};
-  const { rating, sayings } = review?.[0] || {};
-  console.log("rating :>> ", rating);
+  const { data, isLoading: getting } = useGetServiceReviewsQuery(serviceId) || {};
+  const review = data?.find(({ ratingBy }) => email === ratingBy);
+  const { rating, sayings } = review || {};
 
   useEffect(() => {
     if (email && (rating || sayings)) {
@@ -29,7 +28,7 @@ export function ReviewFormProvider({ children }) {
     }
   }, [rating, sayings, setValues, reset, serviceId, email]);
 
-  const submitHandler = useSubmitHandler({ onSubmit, review: review?.[0], serviceId, getting });
+  const submitHandler = useSubmitHandler({ onSubmit, review, serviceId, getting });
 
   const values = { ...form, ...submitHandler };
   return <FormProvider form={values}>{children}</FormProvider>;

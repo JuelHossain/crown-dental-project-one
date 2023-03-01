@@ -24,13 +24,12 @@ export const authApi = apiSlice.injectEndpoints({
       }),
       onQueryStarted: async (arg, { getState, dispatch, queryFulfilled }) => {
         const { accessToken } = getState()?.auth || {};
-        if(accessToken)
-        try {
-          const { data } = await queryFulfilled;
-          console.log(data);
-        } catch (err) {
-          dispatch(userLoggedOut());
-        }
+        if (accessToken)
+          try {
+            await queryFulfilled;
+          } catch (err) {
+            dispatch(userLoggedOut());
+          }
       },
       // Refetch when the page arg changes
       forceRefetch({ currentArg, previousArg }) {

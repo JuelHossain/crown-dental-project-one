@@ -1,5 +1,5 @@
 import { Badge, Group, Stack } from "@mantine/core";
-import { Link, useMatch } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Loading from "../../../../../components/shared/Loading";
 import { useGetServiceQuery } from "../../../../../features/services/servicesApi";
 import useAuth from "../../../../../hooks/auth/useAuth";
@@ -11,10 +11,10 @@ export default function RatingActions({ serviceId, _id }) {
   const { data, isLoading } = useGetServiceQuery(serviceId, { skip: !serviceId }) || {};
   const { name } = data || {};
   const user = useAuth();
-  const inMyReviews = useMatch("/dashboard/my-reviews");
+  const inDash = useLocation().pathname.includes("dashboard");
   return (
     user &&
-    inMyReviews && (
+    inDash && (
       <Stack className="">
         <Badge radius={0} size="lg" className="cursor-pointer" component={Link} to={`/services/${serviceId}`}>
           {isLoading ? <Loading /> : `for ${name}` || "Doesn't Exist"}

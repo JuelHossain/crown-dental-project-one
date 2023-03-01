@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-underscore-dangle */
 import { showNotification } from "@mantine/notifications";
+import { current } from "@reduxjs/toolkit";
 import { servicesApi } from "../servicesApi";
 
 const deleteService = {
@@ -16,11 +17,11 @@ const deleteService = {
     // optimistic update
     const patchResult = dispatch(
       servicesApi.util.updateQueryData("getServices", pagination, (draft) => {
-        // console.log("current(draft) :>> ", current(draft));
-        draft.filter(
+        console.log("current(draft) :>> ", current(draft));
+        return draft.filter(
           (service) =>
             // console.log(service);
-            service._id.toString() !== id.toString(),
+            service?._id?.toString() !== id?.toString(),
         );
       }),
     );
