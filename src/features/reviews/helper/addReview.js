@@ -17,12 +17,13 @@ const addReview = {
       const { data: { insertedId } = {} } = (await queryFulfilled) ?? {};
 
       // getting the page and size from the store
-      const { serviceId } = getState()?.services || {};
-      const { email } = getState()?.auth?.user || {};
+      const { getReviewsArg } = getState()?.reviews || {};
+      console.log("🚀 ~ file: addReview.js:21 ~ onQueryStarted: ~ getReviewsArg:", getReviewsArg)
+  
       // pessimistic update.
 
       dispatch(
-        reviewsApi.util.updateQueryData("getReviews", { serviceId, email }, (draft) => {
+        reviewsApi.util.updateQueryData("getReviews", getReviewsArg, (draft) => {
           // console.log("current(draft) :>> ", current(draft));
           draft.unshift({ ...data, _id: insertedId });
         }),

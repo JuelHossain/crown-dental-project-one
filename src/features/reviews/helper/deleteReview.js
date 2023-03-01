@@ -11,12 +11,11 @@ const deleteReview = {
   // invalidatesTags: ["reviews"],
   // handling success and errors.
   onQueryStarted: async (id, { dispatch, queryFulfilled, getState }) => {
-    const { serviceId } = getState().services || {};
-    const { email } = getState().auth?.user || {};
+    const { getReviewsArg } = getState().reviews;
     const patchResult = dispatch(
       // optimistic cache update after deleting the data from the server.
-      reviewsApi.util.updateQueryData("getReviews", { serviceId, email }, (draft) =>
-        draft.filter((review) => review._id.toString() !== id.toString()),
+      reviewsApi.util.updateQueryData("getReviews", getReviewsArg, (draft) =>
+        draft.filter((review) => review?._id.toString() !== id.toString()),
       ),
     );
 

@@ -8,7 +8,10 @@ import Sidebar from "./sidebar/Sidebar";
 
 export default function MainContent() {
   const serviceId = useServiceId();
-  const { data: reviews, isLoading } = useGetReviewsQuery({ serviceId }, { skip: !serviceId });
+  const { data: reviews, isLoading } = useGetReviewsQuery(
+    { serviceId },
+    { skip: !serviceId, refetchOnMountOrArgChange: true },
+  );
 
   return (
     <Stack spacing={75} className="px-4 mb-10">

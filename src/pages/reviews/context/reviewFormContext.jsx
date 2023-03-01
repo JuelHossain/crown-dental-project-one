@@ -15,19 +15,19 @@ export function ReviewFormProvider({ children }) {
   const form = useForm(reviewFormInitial);
   const serviceId = useSelector(selectServiceId);
   const { email } = useAuth() || {};
-
   const { setValues, onSubmit, reset } = form || {};
-  const { data: review, isLoading: getting } = useGetReviewsQuery({ serviceId, email }) || {};
-
+  const { data: review, isLoading: getting } =
+    useGetReviewsQuery({ serviceId, email }, { refetchOnMountOrArgChange: true }) || {};
   const { rating, sayings } = review?.[0] || {};
+  console.log("rating :>> ", rating);
 
   useEffect(() => {
-    if (rating || sayings) {
+    if (email && (rating || sayings)) {
       setValues({ rating, sayings });
     } else {
       reset();
     }
-  }, [rating, sayings, setValues, reset, serviceId]);
+  }, [rating, sayings, setValues, reset, serviceId, email]);
 
   const submitHandler = useSubmitHandler({ onSubmit, review: review?.[0], serviceId, getting });
 

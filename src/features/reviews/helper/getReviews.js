@@ -1,6 +1,8 @@
 /* eslint-disable no-unused-vars */
 
-// login to make query request depending on the arguments. 
+import { setGetReviewsArg } from "../reviewsSlice";
+
+// login to make query request depending on the arguments.
 
 const queryOp = ({ serviceId, email } = {}) => {
   let query = "";
@@ -20,8 +22,8 @@ const getReviews = {
   // providing tags to keep track of the query
   providesTags: (result, error, arg) => [{ type: "reviews", ...arg }, "reviews"],
   // handling success and errors
-  onQueryStarted: (id, { dispatch, queryFulfilled }) => {
-    
+  onQueryStarted: (arg, { dispatch, queryFulfilled }) => {
+    dispatch(setGetReviewsArg(arg));
   },
 };
 export default getReviews;

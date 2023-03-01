@@ -6,7 +6,7 @@ import ReviewCard from "../../reviews/reviews-in-services/review-card/ReviewCard
 
 export default function DashboardReviews() {
   const { email } = useAuth() || {};
-  const { data, isLoading } = useGetReviewsQuery({ email });
+  const { data, isLoading } = useGetReviewsQuery({ email }, { refetchOnMountOrArgChange: true });
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5  gap-2 sm:gap-4 ">
       {data?.map((review) => (

@@ -4,7 +4,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { useAddReviewMutation, useModifyReviewMutation } from "../../../features/reviews/reviewsApi";
 import useAuth from "../../../hooks/auth/useAuth";
 
-export default function useSubmitHandler({ onSubmit, review, serviceId, getting, refetch, refetchThis }) {
+export default function useSubmitHandler({ onSubmit, review, serviceId, getting }) {
   const { email, photoURL, displayName } = useAuth() || {};
 
   const [addReview, { isLoading: adding }] = useAddReviewMutation();
@@ -20,11 +20,8 @@ export default function useSubmitHandler({ onSubmit, review, serviceId, getting,
         const rating = { ...form, serviceId, userDetails, ratedAt: new Date(), ratingBy: email };
         if (review) {
           await modifyReview({ ...form, id: review._id });
-          if (refetch) refetch();
         } else {
           await addReview(rating);
-          if (refetch) refetch();
-          refetchThis();
         }
       })(e);
     } else {

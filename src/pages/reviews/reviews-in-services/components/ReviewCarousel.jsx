@@ -33,7 +33,6 @@ export default function ReviewCarousel({ reviews, home }) {
       className={` p-4 sm:p-10  ${!home && "xl:h-full xl:absolute xl:w-full "}`}
       classNames={{ container: !home && "xl:py-2 xl:space-y-4" }}
       containScroll="trimSnaps"
-      loop
     >
       {reviews?.length === 0 ? <NoReviews /> : slides}
     </Carousel>
