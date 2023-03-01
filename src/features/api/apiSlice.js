@@ -7,6 +7,8 @@ const baseQuery = fetchBaseQuery({
   baseUrl: url,
   prepareHeaders: async (headers, { getState }) => {
     const token = getState()?.auth?.accessToken;
+    // console.log("🚀 ~ file: apiSlice.js:10 ~ prepareHeaders: ~ token:", token)
+
     if (token) {
       headers.set("Authorization", `Bearer ${token}`);
     }
@@ -21,7 +23,6 @@ const apiSlice = createApi({
 
     if (result?.error?.status === 401) {
       api.dispatch(userLoggedOut());
-      localStorage.clear();
     }
     return result;
   },

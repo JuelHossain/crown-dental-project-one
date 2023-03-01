@@ -1,12 +1,11 @@
 import { Button, Group } from "@mantine/core";
 import { FaPencilAlt } from "react-icons/fa";
-import { useSelector } from "react-redux";
 import openServiceModal from "../../../../../components/modals/serviceFormModal";
-import { selectUser } from "../../../../../features/auth/authSelector";
+import useAuth from "../../../../../hooks/auth/useAuth";
 import DeleteService from "./DeleteService";
 
 export default function ServiceActions() {
-  const user = useSelector(selectUser);
+  const user = useAuth();
   return (
     user && (
       <Group className="w-full">

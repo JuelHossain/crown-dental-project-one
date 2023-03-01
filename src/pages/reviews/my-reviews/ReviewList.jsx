@@ -1,11 +1,10 @@
 import { LoadingOverlay, SimpleGrid } from "@mantine/core";
-import { useAuthState } from "react-firebase-hooks/auth";
-import auth from "../../firebase";
+import useAuth from "../../../hooks/auth/useAuth";
 import useGetReviews from "../../hooks/reviews/useGetReviews";
 import ReviewCard from "../services/service-details/reviews/review-card/ReviewCard";
 
 export default function ReviewList() {
-  const [user] = useAuthState(auth);
+  const user = useAuth();
   const { data, isLoading } = useGetReviews(undefined, user?.email);
 
   const services = data?.map((service) => <ReviewCard key={Math.random()} {...service} />);

@@ -3,6 +3,7 @@ import App from "./App";
 import AdminProtected from "./pages/Auth/AdminProtected";
 import Auth from "./pages/Auth/Auth";
 import Protected from "./pages/Auth/Protected";
+import Unprotected from "./pages/Auth/Unprotected";
 import AddServicePage from "./pages/dashboard/add-service/AddServicePage";
 import Dashboard from "./pages/dashboard/Dashboard";
 import MyReviews from "./pages/dashboard/my-reviews/MyReviews";
@@ -32,7 +33,11 @@ const router = createBrowserRouter([
         element: <ServiceDetails />,
       },
       {
-        element: <Auth />,
+        element: (
+          <Unprotected>
+            <Auth />
+          </Unprotected>
+        ),
         path: "authentication",
       },
       {

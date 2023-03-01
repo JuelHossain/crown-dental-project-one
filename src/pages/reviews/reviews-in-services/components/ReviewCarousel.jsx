@@ -11,7 +11,7 @@ export default function ReviewCarousel({ reviews, home }) {
   const desktop = useMediaQuery(`(min-width: ${theme.breakpoints.xl}px)`);
 
   const slides = reviews?.map((item) => (
-    <Carousel.Slide  className="h-full  " key={item._id}>
+    <Carousel.Slide className="h-full  " key={item._id}>
       <ReviewCard {...item} />
     </Carousel.Slide>
   ));
@@ -27,7 +27,7 @@ export default function ReviewCarousel({ reviews, home }) {
         { maxWidth: "xl", slideSize: "25%", slideGap: "xl" },
       ]}
       slideGap="xl"
-      align="start"
+      align="center"
       height={desktop && !home ? "100%" : 220}
       slidesToScroll={mobile ? 1 : 2}
       className={` p-4 sm:p-10  ${!home && "xl:h-full xl:absolute xl:w-full "}`}

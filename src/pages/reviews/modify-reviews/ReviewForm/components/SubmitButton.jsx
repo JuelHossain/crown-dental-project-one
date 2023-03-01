@@ -2,10 +2,11 @@
 import { Button, Group } from "@mantine/core";
 import { useSelector } from "react-redux";
 import { selectUser } from "../../../../../features/auth/authSelector";
+import useAuth from "../../../../../hooks/auth/useAuth";
 import { useReviewFormContext } from "../../../context/reviewFormContext";
 
 export default function SubmitButton() {
-  const user = useSelector(selectUser);
+  const user = useAuth();
   const { review } = useReviewFormContext();
   return (
     <Group position="right">

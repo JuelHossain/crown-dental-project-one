@@ -1,12 +1,11 @@
 import { Button } from "@mantine/core";
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { FaUser } from "react-icons/fa";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { selectUser } from "../../../features/auth/authSelector";
+import useAuth from "../../../hooks/auth/useAuth";
 
 export default function UserIcon() {
-  const user = useSelector(selectUser);
+  const user = useAuth();
 
   return (
     <Button

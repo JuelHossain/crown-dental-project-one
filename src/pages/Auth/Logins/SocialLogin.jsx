@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useSignInWithFacebook, useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { useLocation, useNavigate } from "react-router-dom";
 import { useGenerateTokenMutation } from "../../../features/auth/authApi";
 import { auth } from "../../../firebase";
 import { useAuthFormContext } from "../context/authFormContext";
@@ -14,8 +13,6 @@ export default function SocialLogin() {
   const [gLogin, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const [fLogin, fUser, fLoading, fError] = useSignInWithFacebook(auth);
   const [generateToken] = useGenerateTokenMutation();
-  const { state } = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (gError || fError) {
@@ -29,7 +26,6 @@ export default function SocialLogin() {
     if (gUser || fUser) {
       (async () => {
         await generateToken(auth.currentUser);
-        navigate(state?.from || "/");
       })();
     }
   }, [gUser, fUser, generateToken]);

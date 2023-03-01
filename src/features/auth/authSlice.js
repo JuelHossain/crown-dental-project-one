@@ -13,7 +13,6 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     userLoggedIn: (state, { payload }) => {
-      
       localStorage.setItem("accessToken", payload.accessToken);
       localStorage.setItem("user", JSON.stringify(payload.user));
       state.accessToken = payload.accessToken;

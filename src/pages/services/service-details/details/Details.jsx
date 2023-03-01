@@ -5,7 +5,6 @@ import Description from "./Description";
 
 export default function Details() {
   const serviceId = useServiceId();
-  console.log("serviceId :>> ", serviceId);
   const { data: { name, description } = {}, isLoading } = useGetServiceQuery(serviceId, { skip: !serviceId }) || {};
 
   return (
