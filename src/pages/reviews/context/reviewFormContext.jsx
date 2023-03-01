@@ -17,18 +17,19 @@ export function ReviewFormProvider({ children }) {
   const { email } = useAuth() || {};
 
   const { setValues, onSubmit, reset } = form || {};
-  const { data: review, isLoading: getting } = useGetReviewsQuery({ serviceId, email }, { skip: !email }) || {};
+  const { data: review, isLoading: getting } = useGetReviewsQuery({ serviceId, email }) || {};
+
   const { rating, sayings } = review?.[0] || {};
 
   useEffect(() => {
-    if (email && (rating || sayings)) {
+    if (rating || sayings) {
       setValues({ rating, sayings });
     } else {
       reset();
     }
-  }, [rating, sayings, setValues, reset, serviceId, email]);
+  }, [rating, sayings, setValues, reset, serviceId]);
 
-  const submitHandler = useSubmitHandler({ onSubmit, review: email ? review?.[0] : null, serviceId, getting });
+  const submitHandler = useSubmitHandler({ onSubmit, review: review?.[0], serviceId, getting });
 
   const values = { ...form, ...submitHandler };
   return <FormProvider form={values}>{children}</FormProvider>;

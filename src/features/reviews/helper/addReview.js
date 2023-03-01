@@ -28,7 +28,7 @@ const addReview = {
         }),
       );
       // success handling
-      showNotification({ TITLE: `Review has been added successfully` });
+      showNotification({ title: `Review has been added successfully` });
     } catch (err) {
       // error handling here.
       showNotification({ title: `There was a problem adding a review` });

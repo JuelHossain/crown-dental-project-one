@@ -4,10 +4,7 @@ import AdminProtected from "./pages/Auth/AdminProtected";
 import Auth from "./pages/Auth/Auth";
 import Protected from "./pages/Auth/Protected";
 import Unprotected from "./pages/Auth/Unprotected";
-import AddServicePage from "./pages/dashboard/add-service/AddServicePage";
-import Dashboard from "./pages/dashboard/Dashboard";
-import MyReviews from "./pages/dashboard/my-reviews/MyReviews";
-import Profile from "./pages/dashboard/profile/Profile";
+import Dashboard, { linksForAdmin, linksForUser } from "./pages/dashboard/Dashboard";
 
 import ErrorPage from "./pages/errors/ErrorPage";
 import Home from "./pages/home/Home";
@@ -48,18 +45,8 @@ const router = createBrowserRouter([
         ),
         path: "/dashboard",
         children: [
-          {
-            element: <Profile />,
-            index: true,
-          },
-          {
-            element: <AddServicePage />,
-            path: "add-service",
-          },
-          {
-            element: <MyReviews />,
-            path: "my-reviews",
-          },
+          ...linksForUser.map(({ element, link }) => ({ element, path: link })),
+          ...linksForAdmin.map(({ element, link }) => ({ element, path: link })),
           {
             element: <AdminProtected />,
             children: [{}],

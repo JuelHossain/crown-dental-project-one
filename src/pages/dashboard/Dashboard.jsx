@@ -1,40 +1,51 @@
 import { Button, Center, Stack } from "@mantine/core";
 import { Link, Outlet, useLocation } from "react-router-dom";
 import useAuth from "../../hooks/auth/useAuth";
+import AddServicePage from "./add-service/AddServicePage";
+import MyAppointments from "./my-appointments/MyAppointments";
+import MyReviews from "./my-reviews/MyReviews";
+import Profile from "./profile/Profile";
 
+export const linksForAdmin = [
+  {
+    label: "profile",
+    link: "/dashboard",
+    element: <Profile />,
+  },
+  {
+    label: "Add A Service",
+    link: "/dashboard/add-service",
+    element: <AddServicePage />,
+  },
+  {
+    label: "Manage Services",
+    link: "/dashboard/manage-services",
+    element: <MyAppointments />,
+  },
+  {
+    label: "Manage Schedule",
+    link: "/dashboard/manage-schedules",
+    element: <MyAppointments />,
+  },
+];
+export const linksForUser = [
+  {
+    label: "profile",
+    link: "/dashboard",
+    element: <Profile />,
+  },
+  {
+    label: "My Reviews",
+    link: "/dashboard/my-reviews",
+    element: <MyReviews />,
+  },
+  {
+    label: "My Appointments",
+    link: "/dashboard/my-appointments",
+    element: <MyAppointments />,
+  },
+];
 export default function Dashboard() {
-  const linksForAdmin = [
-    {
-      label: "profile",
-      link: "/dashboard",
-    },
-    {
-      label: "Manage Services",
-      link: "/manage-services",
-    },
-    {
-      label: "Manage Schedule",
-      link: "/manage-schedules",
-    },
-    {
-      label: "My Appointments",
-      link: "/dashboard/my-appointments",
-    },
-  ];
-  const linksForUser = [
-    {
-      label: "profile",
-      link: "/dashboard",
-    },
-    {
-      label: "Add A Service",
-      link: "/dashboard/add-service",
-    },
-    {
-      label: "My Reviews",
-      link: "/dashboard/my-reviews",
-    },
-  ];
   const { admin } = useAuth() || {};
   const linkToShow = admin ? linksForAdmin : linksForUser;
   const { pathname } = useLocation();

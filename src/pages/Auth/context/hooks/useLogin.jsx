@@ -8,10 +8,10 @@ export default function useLogin() {
   const { email, password } = values || {};
   const [generateToken] = useGenerateTokenMutation();
 
-  return async () => {
+  return async (admin) => {
     try {
       setLoading(true);
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, admin?.email || email, admin?.password || password);
       if (auth.currentUser.emailVerified) {
         await generateToken(auth?.currentUser);
         setLoading(false);
